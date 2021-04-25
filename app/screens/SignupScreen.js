@@ -1,8 +1,8 @@
-import { Button, Icon, Input, Item, Label } from "native-base";
+import { Button, Icon } from "native-base";
 import React, { useState } from "react";
-import { StyleSheet, ImageBackground, Image, Text } from "react-native";
+import { StyleSheet, ImageBackground, Image, Text, View } from "react-native";
 import authStore from "../stores/authStore";
-import { TextInput } from "react-native-paper";
+import { Card, TextInput } from "react-native-paper";
 import { observer } from "mobx-react";
 
 const Signup = () => {
@@ -21,55 +21,105 @@ const Signup = () => {
 
   return (
     <ImageBackground style={styles.bgImage} source={require("../assets/1.jpg")}>
-      <Image style={styles.logo} source={require("../assets/logo.png")} />
-      <Item floatingLabel>
-        <Label>Enter your first name</Label>
-        <Input onChangeText={(firstName) => setUser({ ...user, firstName })} />
-      </Item>
-      <Item floatingLabel>
-        <Label>Last name</Label>
-        <Input onChangeText={(lastName) => setUser({ ...user, lastName })} />
-      </Item>
-      <Item floatingLabel>
-        <Label>Phobe number</Label>
-        <Input
-          onChangeText={(phonenumber) => setUser({ ...user, phonenumber })}
-        />
-      </Item>
-      <Item floatingLabel>
-        <Label>National ID</Label>
-        <Input onChangeText={(civilId) => setUser({ ...user, civilId })} />
-      </Item>
-      <Item floatingLabel>
-        <Label>Username</Label>
-        <Input onChangeText={(username) => setUser({ ...user, username })} />
-      </Item>
-      <Item fixedLabel last>
-        <Label>Password</Label>
-        <Input
-          secureTextEntry={true}
-          onChangeText={(password) => setUser({ ...user, password })}
-        />
-      </Item>
-      <Button warning block onPress={handleSubmit}>
-        <Icon name="pulse" />
-        <Text>Welcome</Text>
-      </Button>
+      <View style={{ flex: 1, width: "100%", marginTop: "10%" }}>
+        <Card style={styles.card}>
+          <TextInput
+            style={styles.input}
+            placeholder="Place your Text"
+            onChangeText={(firstName) => setUser({ ...user, firstName })}
+          />
+        </Card>
+        <Card style={styles.card}>
+          <TextInput
+            style={styles.input}
+            placeholder="Place your Text"
+            onChangeText={(lastName) => setUser({ ...user, lastName })}
+          />
+        </Card>
+        <Card style={styles.card}>
+          <TextInput
+            style={styles.input}
+            onChangeText={(phonenumber) => setUser({ ...user, phonenumber })}
+          />
+        </Card>
+        <Card style={styles.card}>
+          <TextInput
+            style={styles.input}
+            placeholder="Place your Text"
+            onChangeText={(civilId) => setUser({ ...user, civilId })}
+          />
+        </Card>
+        <Card style={styles.card}>
+          <TextInput
+            style={styles.input}
+            placeholder="Place your Text"
+            onChangeText={(username) => setUser({ ...user, username })}
+          />
+        </Card>
+        <Card style={styles.card}>
+          <TextInput
+            style={styles.input}
+            placeholder="Place your Text"
+            secureTextEntry={true}
+            onChangeText={(password) => setUser({ ...user, password })}
+          />
+        </Card>
+
+        <Button
+          warning
+          block
+          onPress={handleSubmit}
+          style={{
+            borderRadius: 10,
+            width: 150,
+            marginLeft: 120,
+            marginTop: 30,
+          }}
+        >
+          <Icon name="pulse" />
+          <Text style={{ fontSize: 20, fontWeight: "bold" }}>SignUp</Text>
+        </Button>
+      </View>
     </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
   bgImage: {
-    flex: 1,
     justifyContent: "flex-end",
     alignItems: "center",
+    flex: 1,
   },
-  logo: {
-    width: 100,
-    height: 100,
-    position: "absolute",
-    top: 70,
+  input: {
+    borderBottomRightRadius: 20,
+    borderBottomLeftRadius: 20,
+    backgroundColor: "rgba(0,0,0,0.0)",
+    borderTopRightRadius: 20,
+    borderTopLeftRadius: 20,
+    width: 250,
+    marginTop: 8,
+    height: 50,
+  },
+
+  card: {
+    opacity: 1,
+    marginTop: 20,
+    marginLeft: 70,
+    width: 250,
+    height: 57,
+    borderBottomRightRadius: 20,
+    borderBottomLeftRadius: 20,
+    borderTopRightRadius: 20,
+    borderTopLeftRadius: 20,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 7,
+    },
+    shadowOpacity: 0.41,
+    shadowRadius: 9.11,
+
+    elevation: 14,
   },
 });
 export default observer(Signup);

@@ -39,7 +39,7 @@ const PanikRequest = () => {
           <Text style={styles.Text}>{authStore.user.phonenumber}</Text>
         </Card>
         <Card style={styles.Card}>
-          <Text style={styles.Text}>Name</Text>
+          <Text style={styles.Text}>{authStore.user.civilId}</Text>
         </Card>
       </View>
     </View>

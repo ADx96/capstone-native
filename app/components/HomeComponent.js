@@ -11,41 +11,19 @@ import { Text } from "native-base";
 import { Card } from "react-native-paper";
 
 const Home = () => {
-  const data = emergencyStore.types;
   return (
-    <View style={styles.container}>
-      <Title>Whats Your Emergemcy?</Title>
-      {data.map((type) => (
-        <View style={{ flex: 1 }}>
-          <TouchableOpacity>
-            <View style={{ position: "relative" }}>
-              <Card key={type.id}>
-                <Card.Content>
-                  <Card.Cover
-                    source={{ uri: type.image }}
-                    style={styles.cardStyle}
-                  ></Card.Cover>
-                  <Text
-                    style={{
-                      alignSelf: "flex-end",
-                      position: "absolute",
-                      paddingTop: 50,
-                      fontFamily: "monospace",
-                      fontWeight: "bold",
-                      fontSize: 40,
-                      color: "#ff6f33",
-                      overflow: "hidden",
-                    }}
-                  >
-                    {type.type}
-                  </Text>
-                </Card.Content>
-              </Card>
-            </View>
-          </TouchableOpacity>
+    <>
+      <View>
+        <Title style={styles.Title}>Whats Your Emergemcy?</Title>
+      </View>
+      <View style={styles.container}>
+        <View style={{ marginTop: 12, marginLeft: 10 }}>
+          <Card style={styles.Card}>
+            <Text style={styles.Text}>{}</Text>
+          </Card>
         </View>
-      ))}
-    </View>
+      </View>
+    </>
   );
 };
 
@@ -55,25 +33,34 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  cardStyle: {
-    alignSelf: "center",
-    width: 300,
+  Text: {
+    fontWeight: "bold",
+    marginLeft: 90,
+    marginTop: 15,
+  },
+  Title: {
+    marginLeft: 70,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  Card: {
+    width: 320,
+    marginTop: 30,
     height: 87,
-    borderBottomRightRadius: 20,
-    borderBottomLeftRadius: 20,
-    borderTopRightRadius: 20,
-    borderTopLeftRadius: 20,
+    borderBottomRightRadius: 15,
+    borderBottomLeftRadius: 15,
+    borderTopRightRadius: 15,
+    borderTopLeftRadius: 15,
     shadowColor: "#000",
-    position: "absolute",
     shadowOffset: {
       width: 0,
       height: 7,
     },
     shadowOpacity: 0.41,
     shadowRadius: 9.11,
+
     elevation: 14,
   },
-  coverStyle: {},
 });
 
 export default Home;

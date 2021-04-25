@@ -19,29 +19,41 @@ import * as eva from "@eva-design/eva";
 import { EvaIconsPack } from "@ui-kitten/eva-icons";
 import DrawerContent from "./app/components/DrawerContent";
 import Profile from "./app/screens/ProfileScreen";
+import { Spinner } from "native-base";
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
 const App = () => {
+  if (authStore.loading) return <Spinner />;
+
   return (
-    <NavigationContainer style={styles.container}>
-      <StatusBar />
-      {authStore.isLoading === true ? (
-        <Stack.Navigator initialRouteName="Welcome">
-          <Stack.Screen
-            name="Welcome"
-            component={WelcomeScreen}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen name="Signup" component={Signup} />
-        </Stack.Navigator>
-      ) : (
-        <Drawer.Navigator>
-          <Drawer.Screen name="Home" component={MainTapScreen} />
-        </Drawer.Navigator>
-      )}
-    </NavigationContainer>
+    <>
+      <IconRegistry icons={EvaIconsPack} />
+      <ApplicationProvider {...eva} theme={eva.light}>
+        <NavigationContainer style={styles.container}>
+          <StatusBar />
+          {authStore.isLoading === true ? (
+            <Stack.Navigator initialRouteName="Welcome">
+              <Stack.Screen
+                name="Welcome"
+                component={WelcomeScreen}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen name="Signup" component={Signup} />
+            </Stack.Navigator>
+          ) : (
+            <Drawer.Navigator
+              initialRouteName="Home"
+              drawerContent={(props) => <DrawerContent {...props} />}
+            >
+              <Drawer.Screen name="Profile" component={Profile} />
+              <Drawer.Screen name="Home" component={MainTapScreen} />
+            </Drawer.Navigator>
+          )}
+        </NavigationContainer>
+      </ApplicationProvider>
+    </>
   );
 };
 

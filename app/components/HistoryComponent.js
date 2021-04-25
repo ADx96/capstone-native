@@ -7,8 +7,9 @@ import PanikRequest from "../components/PanikRequest";
 export default function History() {
   return (
     <View style={{ flex: 1, marginTop: 50 }}>
-      {/* <CameraComponent /> */}
-      <PanikRequest />
+      {/* <CameraComponent />
+      <PanikRequest /> */}
+      <History />
     </View>
   );
 }

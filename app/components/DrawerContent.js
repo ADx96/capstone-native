@@ -6,11 +6,13 @@ import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import authStore from "../stores/authStore";
 import { observer } from "mobx-react";
+import { Spinner } from "native-base";
 
 // import { AuthContext } from "../components/context";
 
 function DrawerContent(props) {
   const paperTheme = useTheme();
+  if (authStore.loading) return <Spinner />;
 
   function signOut() {
     authStore.signout(user);
