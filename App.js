@@ -13,6 +13,13 @@ import authStore from "./app/stores/authStore";
 import { observer } from "mobx-react";
 import MainTapScreen from "./app/components/TabNavigator";
 
+//ui kiiten
+import { ApplicationProvider, IconRegistry } from "@ui-kitten/components";
+import * as eva from "@eva-design/eva";
+import { EvaIconsPack } from "@ui-kitten/eva-icons";
+import DrawerContent from "./app/components/DrawerContent";
+import Profile from "./app/screens/ProfileScreen";
+
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 

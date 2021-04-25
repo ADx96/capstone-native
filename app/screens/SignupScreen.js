@@ -2,6 +2,8 @@ import { Button, Icon, Input, Item, Label } from "native-base";
 import React, { useState } from "react";
 import { StyleSheet, ImageBackground, Image, Text } from "react-native";
 import authStore from "../stores/authStore";
+import { TextInput } from "react-native-paper";
+import { observer } from "mobx-react";
 
 const Signup = () => {
   const [user, setUser] = useState({
@@ -70,4 +72,4 @@ const styles = StyleSheet.create({
     top: 70,
   },
 });
-export default Signup;
+export default observer(Signup);

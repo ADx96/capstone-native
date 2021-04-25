@@ -1,7 +1,8 @@
-import { Button, Icon, Input, Item, Label } from "native-base";
+import { observer } from "mobx-react";
+import { Button, Icon, View } from "native-base";
 import React, { useState } from "react";
-import { StyleSheet, ImageBackground, Image, Text, Alert } from "react-native";
-
+import { StyleSheet, ImageBackground, Image } from "react-native";
+import { TextInput, Card, Text } from "react-native-paper";
 import authStore from "../stores/authStore";
 
 const WelcomeScreen = ({ navigation }) => {
@@ -53,4 +54,4 @@ const styles = StyleSheet.create({
     top: 70,
   },
 });
-export default WelcomeScreen;
+export default observer(WelcomeScreen);

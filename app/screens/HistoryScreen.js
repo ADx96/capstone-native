@@ -2,6 +2,7 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import HistoryComponent from "../components/HistoryComponent";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import { observer } from "mobx-react";
 
 const HistoryStack = createStackNavigator();
 const HistoryStackScreen = ({ navigation }) => {
@@ -26,4 +27,4 @@ const HistoryStackScreen = ({ navigation }) => {
   );
 };
 
-export default HistoryStackScreen;
+export default observer(HistoryStackScreen);
