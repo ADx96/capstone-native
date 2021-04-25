@@ -2,6 +2,7 @@ import React from "react";
 import { Text, Image, StyleSheet, View } from "react-native";
 import { observer } from "mobx-react";
 import { Card } from "react-native-paper";
+import emergencyStore from "../stores/EmergencyStore";
 
 const HistoryItem = ({ emergency }) => {
   return (

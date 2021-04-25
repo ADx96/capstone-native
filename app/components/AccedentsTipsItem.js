@@ -23,7 +23,7 @@ const AccedentsTipsItem = ({ tip2, navigation }) => {
         impact
         impactStyle="Light"
         style={{ marginTop: 100, position: "absolute", marginLeft: 250 }}
-        onPress={() => navigation.navigate("AccedentsDetails")}
+        onPress={() => navigation.push("AccedentsDetails")}
       />
     </View>
   );

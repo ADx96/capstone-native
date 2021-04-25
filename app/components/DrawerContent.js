@@ -14,11 +14,6 @@ function DrawerContent(props) {
   const paperTheme = useTheme();
   if (authStore.loading) return <Spinner />;
 
-  function signOut() {
-    authStore.signout(user);
-    navigation.navigate("Welcome");
-  }
-
   //   const { signOut, toggleTheme } = React.useContext(AuthContext);
 
   return (

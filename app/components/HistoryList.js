@@ -1,23 +1,20 @@
 import { observer } from "mobx-react";
-import { Content, List } from "native-base";
+import { List, View } from "native-base";
 import React from "react";
+import authStore from "../stores/authStore";
 import emergencyStore from "../stores/EmergencyStore";
 import HistoryItem from "./HistoryItem";
 
 const HistoryList = () => {
-  //Stores => EmergencyStore => fitch all the emergancies from the backend
+  if (emergencyStore.loading) return <Spinner />;
 
   const historyList = emergencyStore.emergencies
-    .filter((emergency) => emergency.requesterId === AuthStore.user.id)
+    .filter((emergency) => emergency.requesterId === authStore.user.id)
     .map((emergency) => (
       <HistoryItem mergency={emergency} key={emergency.id} />
     ));
 
-  return (
-    <Content>
-      <List>{historyList}</List>
-    </Content>
-  );
+  return <View style={{ flex: 1 }}>{historyList}</View>;
 };
 
 export default observer(HistoryList);

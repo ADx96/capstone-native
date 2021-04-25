@@ -15,6 +15,7 @@ class AuthStore {
       await AsyncStorage.setItem("myToken", token);
       console.log(token);
       this.user = jsonValue;
+      this.isLoading = false;
     } catch (e) {
       console.log(e);
     }
@@ -45,7 +46,6 @@ class AuthStore {
     try {
       const res = await instance.post("/signin", userData);
       this.storageData(res.data.token);
-      this.isLoading = false;
     } catch (error) {
       console.log("AuthStore -> signIn -> error", error);
     }

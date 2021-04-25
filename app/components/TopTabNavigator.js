@@ -8,6 +8,8 @@ import { TabBar, Tab, Layout, Text, Icon } from "@ui-kitten/components";
 import EmergencyScreen from "../screens/EmergencyScreen";
 import AccedentScreen from "../screens/AccedentScreen";
 import CovidScreen from "../screens/CovidScreen";
+import AccedentsTipsDetails from "./AccedentsTipsDetails";
+import EmergencytipsDetails from "./EmergencytipsDetails";
 
 const { Navigator, Screen } = createMaterialTopTabNavigator();
 

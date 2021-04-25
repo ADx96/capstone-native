@@ -1,7 +1,8 @@
 import React from "react";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { createStackNavigator } from "@react-navigation/stack";
-import Home from "../components/HomeComponent";
+
+import HomeList from "../components/HomeList";
 
 const HomeStack = createStackNavigator();
 
@@ -10,7 +11,7 @@ const HomeStackScreen = ({ navigation }) => {
     <HomeStack.Navigator>
       <HomeStack.Screen
         name="Home"
-        component={Home}
+        component={HomeList}
         options={{
           headerLeft: () => (
             <Ionicons.Button

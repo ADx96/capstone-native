@@ -20,13 +20,14 @@ import { EvaIconsPack } from "@ui-kitten/eva-icons";
 import DrawerContent from "./app/components/DrawerContent";
 import Profile from "./app/screens/ProfileScreen";
 import { Spinner } from "native-base";
-
+import AccedentsList from "./app/components/AccedentsList";
+import AccedentsDetails from "./app/components/AccedentsTipsDetails";
+import EmergencyTipsDeatails from "./app/components/EmergencytipsDetails";
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
+const { Navigator, Screen } = createStackNavigator();
 
 const App = () => {
-  if (authStore.loading) return <Spinner />;
-
   return (
     <>
       <IconRegistry icons={EvaIconsPack} />
@@ -35,6 +36,10 @@ const App = () => {
           <StatusBar />
           {authStore.isLoading === true ? (
             <Stack.Navigator initialRouteName="Welcome">
+              <Stack.Screen
+                name="AccedentsDetails"
+                component={AccedentsDetails}
+              />
               <Stack.Screen
                 name="Welcome"
                 component={WelcomeScreen}

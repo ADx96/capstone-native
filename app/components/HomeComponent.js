@@ -1,51 +1,41 @@
-import {
-  ImageBackground,
-  View,
-  StyleSheet,
-  TouchableOpacity,
-} from "react-native";
-import { Title } from "react-native-paper";
-import * as React from "react";
-import emergencyStore from "../stores/emergencyTypeStore";
-import { Text } from "native-base";
-import { Card } from "react-native-paper";
+import { View, StyleSheet, Image } from "react-native";
 
-const Home = () => {
+import * as React from "react";
+import { Spinner, Text } from "native-base";
+import { Card } from "react-native-paper";
+import { observer } from "mobx-react-lite";
+import typeStore from "../stores/emergencyTypeStore";
+
+const HomeItem = ({ type }) => {
+  if (typeStore.loading) return <Spinner />;
+
   return (
     <>
-      <View>
-        <Title style={styles.Title}>Whats Your Emergemcy?</Title>
-      </View>
-      <View style={styles.container}>
-        <View style={{ marginTop: 12, marginLeft: 10 }}>
-          <Card style={styles.Card}>
-            <Text style={styles.Text}>{}</Text>
-          </Card>
-        </View>
+      <View style={{ marginTop: 30, marginLeft: 40 }}>
+        <Image source={{ uri: type.image }}></Image>
+        <Card style={styles.Card}>
+          <Text style={styles.Text}>{type.type}</Text>
+        </Card>
       </View>
     </>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
   Text: {
     fontWeight: "bold",
-    marginLeft: 90,
-    marginTop: 15,
+    marginLeft: 8,
+    marginTop: 60,
   },
   Title: {
-    marginLeft: 70,
+    marginLeft: 80,
+    marginTop: 20,
     justifyContent: "center",
     alignItems: "center",
   },
   Card: {
     width: 320,
-    marginTop: 30,
+    marginTop: 10,
     height: 87,
     borderBottomRightRadius: 15,
     borderBottomLeftRadius: 15,
@@ -63,4 +53,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Home;
+export default observer(HomeItem);

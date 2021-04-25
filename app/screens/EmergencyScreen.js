@@ -3,10 +3,10 @@ import { Title } from "react-native-paper";
 import * as React from "react";
 import EmergencyTipsList from "../components/EmergencyTipsList";
 
-export default function EmergencyScreen() {
+export default function EmergencyScreen({ navigation }) {
   return (
     <View style={{ flex: 1, marginTop: 20 }}>
-      <EmergencyTipsList />
+      <EmergencyTipsList navigation={navigation} />
     </View>
   );
 }
