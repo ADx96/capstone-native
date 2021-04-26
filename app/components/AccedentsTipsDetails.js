@@ -5,10 +5,10 @@ import { observer } from "mobx-react";
 import { Card } from "react-native-paper";
 
 const AccedentsDetails = ({ route }) => {
-  // const { tip2 } = route.params;
+  const { tip2 } = route.params;
   return (
     <View style={{ flex: 1 }}>
-      {/* <Image src={{ uri: tip2.image }} style={styles.tinyLogo} /> */}
+      <Image src={{ uri: tip2.image }} style={styles.tinyLogo} />
       <Card
         style={{
           width: 375,

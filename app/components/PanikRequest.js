@@ -1,52 +1,67 @@
 import React from "react";
 import { ListItem } from "native-base";
-import { Text, Image, StyleSheet, View } from "react-native";
+import { Text, Image, StyleSheet, View, ImageBackground } from "react-native";
 import { observer } from "mobx-react";
 import { Card, Title } from "react-native-paper";
 import MapView, { Marker } from "react-native-maps";
 import authStore from "../stores/authStore";
+import locationStore from "../stores/LocationStore";
+import { Spinner } from "@ui-kitten/components";
 
-const PanikRequest = () => {
+const PanikRequest = ({ route }) => {
+  const { type } = route.params;
+  if (!locationStore.location) return <Spinner />;
+  console.log(locationStore.location);
   return (
-    <View style={{ flex: 1 }}>
-      <View
-        style={{ margin: 50, justifyContent: "center", alignItems: "center" }}
-      >
-        <MapView
-          style={styles.map}
-          initialRegion={{
-            latitude: 37.78825,
-            longitude: -122.4324,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421,
+    <ImageBackground style={styles.bgImage} source={require("../assets/c.gif")}>
+      <View style={{ flex: 1 }}>
+        <View
+          style={{
+            marginTop: 50,
+            justifyContent: "center",
+            alignItems: "center",
           }}
         >
-          <Marker
-            title="sdsd"
-            description="sfefd"
-            coordinate={{
-              latitude: 37.78825,
-              longitude: -122.4324,
+          <Title style={styles.Title}>{type.type}</Title>
+          <MapView
+            style={styles.map}
+            initialRegion={{
+              latitude: locationStore.location.lat,
+              longitude: locationStore.location.lng,
+              latitudeDelta: 0.0922,
+              longitudeDelta: 0.0421,
             }}
-          />
-        </MapView>
+          >
+            <Marker
+              title={authStore.user.firstName}
+              description="sfefd"
+              coordinate={{
+                latitude: locationStore.location.lat,
+                longitude: locationStore.location.lng,
+              }}
+            />
+          </MapView>
+        </View>
+        <View style={{ marginTop: 50, marginLeft: 85 }}>
+          <Card style={styles.Card}>
+            <Text style={styles.Text}>{authStore.user.firstName}</Text>
+          </Card>
+          <Card style={styles.Card}>
+            <Text style={styles.Text}>{authStore.user.phonenumber}</Text>
+          </Card>
+          <Card style={styles.Card}>
+            <Text style={styles.Text}>{authStore.user.civilId}</Text>
+          </Card>
+        </View>
       </View>
-      <View style={{ marginTop: 50, marginLeft: 85 }}>
-        <Card style={styles.Card}>
-          <Text style={styles.Text}>{authStore.user.firstName}</Text>
-        </Card>
-        <Card style={styles.Card}>
-          <Text style={styles.Text}>{authStore.user.phonenumber}</Text>
-        </Card>
-        <Card style={styles.Card}>
-          <Text style={styles.Text}>{authStore.user.civilId}</Text>
-        </Card>
-      </View>
-    </View>
+    </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
+  bgImage: {
+    flex: 1,
+  },
   container: {
     paddingTop: 25,
   },
@@ -58,6 +73,14 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginLeft: 90,
     marginTop: 15,
+  },
+  Title: {
+    fontWeight: "bold",
+    fontSize: 40,
+    marginLeft: -20,
+    marginTop: 50,
+    color: "white",
+    paddingTop: 20,
   },
   baseText: {
     fontWeight: "bold",
@@ -99,9 +122,9 @@ const styles = StyleSheet.create({
     elevation: 14,
   },
   map: {
-    position: "absolute",
-    width: 200,
-    height: 100,
+    marginTop: 50,
+    width: 300,
+    height: 200,
   },
 });
 

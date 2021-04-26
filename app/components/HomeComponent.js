@@ -1,4 +1,4 @@
-import { View, StyleSheet, Image } from "react-native";
+import { View, StyleSheet, Image, Alert, TouchableOpacity } from "react-native";
 
 import * as React from "react";
 import { Spinner, Text } from "native-base";
@@ -6,18 +6,20 @@ import { Card } from "react-native-paper";
 import { observer } from "mobx-react-lite";
 import typeStore from "../stores/emergencyTypeStore";
 
-const HomeItem = ({ type }) => {
+const HomeItem = ({ type, navigation }) => {
   if (typeStore.loading) return <Spinner />;
 
   return (
-    <>
+    <TouchableOpacity
+      onPress={() => navigation.navigate("PanikRequest", { type })}
+    >
       <View style={{ marginTop: 30, marginLeft: 40 }}>
         <Image source={{ uri: type.image }}></Image>
         <Card style={styles.Card}>
           <Text style={styles.Text}>{type.type}</Text>
         </Card>
       </View>
-    </>
+    </TouchableOpacity>
   );
 };
 

@@ -2,7 +2,7 @@ import React from "react";
 import { View, StyleSheet, Image } from "react-native";
 import { useTheme, Avatar, Title, Caption, Drawer } from "react-native-paper";
 import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
-
+import pic from "../assets/drawer.jpg";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import authStore from "../stores/authStore";
 import { observer } from "mobx-react";
@@ -14,20 +14,13 @@ function DrawerContent(props) {
   const paperTheme = useTheme();
   if (authStore.loading) return <Spinner />;
 
-  //   const { signOut, toggleTheme } = React.useContext(AuthContext);
-
   return (
     <View style={{ flex: 1 }}>
       <DrawerContentScrollView {...props}>
         <View style={styles.drawerContent}>
           <View style={styles.userInfoSection}>
             <View style={{ flexDirection: "row", marginTop: 15 }}>
-              <Avatar.Image
-                source={{
-                  uri: authStore.user.image,
-                }}
-                size={50}
-              />
+              <Avatar.Image source={authStore.user.image} size={60} />
               <View style={{ marginLeft: 15, flexDirection: "column" }}>
                 <Title style={styles.title}>{authStore.user.firstName}</Title>
                 <Caption style={styles.caption}>
@@ -38,12 +31,7 @@ function DrawerContent(props) {
           </View>
           <Drawer.Section style={styles.drawerSection}>
             <View>
-              <Image
-                style={styles.logo}
-                source={{
-                  uri: "https://reactnative.dev/img/tiny_logo.png",
-                }}
-              />
+              <Image style={styles.logo} source={pic} />
             </View>
           </Drawer.Section>
           <Drawer.Section style={styles.drawerSection}>
@@ -73,10 +61,8 @@ function DrawerContent(props) {
           icon={({ color, size }) => (
             <Icon name="exit-to-app" color={color} size={size} />
           )}
-          label="Guide Bot"
-          onPress={() => {
-            signOut;
-          }}
+          label="Sign Out"
+          onPress={() => {}}
         />
       </Drawer.Section>
     </View>
@@ -84,9 +70,6 @@ function DrawerContent(props) {
 }
 
 const styles = StyleSheet.create({
-  drawerContent: {
-    flex: 1,
-  },
   userInfoSection: {
     paddingLeft: 20,
   },
@@ -109,7 +92,6 @@ const styles = StyleSheet.create({
   section: {
     flexDirection: "row",
     alignItems: "center",
-    marginRight: 15,
   },
   paragraph: {
     fontWeight: "bold",
@@ -117,7 +99,8 @@ const styles = StyleSheet.create({
     color: "black",
   },
   drawerSection: {
-    marginTop: 15,
+    marginTop: 35,
+    marginRight: 100,
   },
   bottomDrawerSection: {
     marginBottom: 15,
@@ -133,10 +116,9 @@ const styles = StyleSheet.create({
   },
 
   logo: {
-    width: 300,
-    height: 129.5,
-    marginRight: "30%",
-    paddingRight: 50,
+    width: 330,
+    height: 140.5,
+    padding: 60,
   },
 });
 

@@ -20,9 +20,12 @@ import { EvaIconsPack } from "@ui-kitten/eva-icons";
 import DrawerContent from "./app/components/DrawerContent";
 import Profile from "./app/screens/ProfileScreen";
 import { Spinner } from "native-base";
-import AccedentsList from "./app/components/AccedentsList";
+
 import AccedentsDetails from "./app/components/AccedentsTipsDetails";
-import EmergencyTipsDeatails from "./app/components/EmergencytipsDetails";
+
+import PanikRequest from "./app/components/PanikRequest";
+import AccedentsTipsDetails from "./app/components/AccedentsTipsDetails";
+import EmergencytipsDetails from "./app/components/EmergencytipsDetails";
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 const { Navigator, Screen } = createStackNavigator();
@@ -40,6 +43,7 @@ const App = () => {
                 name="AccedentsDetails"
                 component={AccedentsDetails}
               />
+
               <Stack.Screen
                 name="Welcome"
                 component={WelcomeScreen}
@@ -54,6 +58,15 @@ const App = () => {
             >
               <Drawer.Screen name="Profile" component={Profile} />
               <Drawer.Screen name="Home" component={MainTapScreen} />
+              <Drawer.Screen name="PanikRequest" component={PanikRequest} />
+              <Drawer.Screen
+                name="AccedentsDetails"
+                component={AccedentsTipsDetails}
+              />
+              <Drawer.Screen
+                name="EmergencyTipsDeatails"
+                component={EmergencytipsDetails}
+              />
             </Drawer.Navigator>
           )}
         </NavigationContainer>

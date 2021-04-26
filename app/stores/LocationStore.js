@@ -3,30 +3,30 @@ import { makeAutoObservable } from "mobx";
 import * as Location from "expo-location";
 
 class LocationStore {
+  location = null;
+  message = null;
   constructor() {
     makeAutoObservable(this);
   }
 
   GetLocation = async () => {
     let { status } = await Location.requestForegroundPermissionsAsync();
-    console.log("karafta");
+
     if (status !== "granted") {
-      setErrorMsg("Permission to access location was denied");
+      this.message = "Permession not granted";
       return;
     }
-    let location = await Location.watchPositionAsync(
-      { accuracy: Location.Accuracy.Lowest, distanceInterval: 2000 },
-      (loc) => setLocation(JSON.parse(JSON.stringify(loc.coords)))
+    await Location.watchPositionAsync(
+      { accuracy: Location.Accuracy.High },
+      (loc) => {
+        if (loc) {
+          this.location = {
+            lat: +loc.coords.latitude,
+            lng: +loc.coords.longitude,
+          };
+        }
+      }
     );
-
-    console.log(location);
-    setLocation(location);
-    let text = "Waiting..";
-    if (errorMsg) {
-      text = errorMsg;
-    } else if (location) {
-      text = JSON.stringify(location);
-    }
   };
 }
 
