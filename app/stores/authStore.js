@@ -24,7 +24,10 @@ class AuthStore {
   getData = async () => {
     try {
       const jsonValue = await AsyncStorage.getItem("myToken");
-      return jsonValue != null ? decode(jsonValue) : null;
+      if (jsonValue) {
+        this.user = decode(jsonValue);
+        this.isLoading = false;
+      }
     } catch (e) {
       console.log(e);
     }
