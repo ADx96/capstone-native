@@ -3,10 +3,9 @@ import GradientButton from "react-native-gradient-buttons";
 
 import { Text, Image, StyleSheet, View } from "react-native";
 import { observer } from "mobx-react";
-import { useNavigation } from "@react-navigation/native";
 import { Card } from "react-native-paper";
 
-const EmergencyTips = ({ navigation, tip1 }) => {
+const EmergencyTipsItem = ({ tip1, navigation }) => {
   return (
     <View>
       <View style={styles.container}>
@@ -26,7 +25,7 @@ const EmergencyTips = ({ navigation, tip1 }) => {
         impact
         impactStyle="Light"
         style={{ marginTop: 100, position: "absolute", marginLeft: 250 }}
-        onPress={() => navigation.navigate("EmergencyTipsDeatails", { tip1 })}
+        onPress={() => navigation.navigate("EmergencyTipsDetails", { tip1 })}
       />
     </View>
   );
@@ -55,4 +54,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default observer(EmergencyTips);
+export default observer(EmergencyTipsItem);

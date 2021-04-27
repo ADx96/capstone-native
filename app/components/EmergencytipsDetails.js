@@ -1,14 +1,14 @@
 import React from "react";
-import { ListItem } from "native-base";
 import { Text, Image, StyleSheet, View } from "react-native";
 import { observer } from "mobx-react";
 import { Card } from "react-native-paper";
 
-const EmergencyTipsDeatails = ({ route }) => {
+const EmergencyTipsDetails = ({ route }) => {
   const { tip1 } = route.params;
+
   return (
     <View style={{ flex: 1 }}>
-      <Image src={{ uri: tip2.image }} style={styles.tinyLogo} />
+      <Image src={{ uri: tip1.image }} style={styles.tinyLogo} />
       <Card
         style={{
           width: 375,
@@ -71,4 +71,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default observer(EmergencyTipsDeatails);
+export default observer(EmergencyTipsDetails);

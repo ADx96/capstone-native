@@ -11,7 +11,7 @@ const HistoryList = () => {
   const historyList = emergencyStore.emergencies
     .filter((emergency) => emergency.requesterId === authStore.user.id)
     .map((emergency) => (
-      <HistoryItem mergency={emergency} key={emergency.id} />
+      <HistoryItem emergency={emergency} key={emergency.id} />
     ));
 
   return <View style={{ flex: 1 }}>{historyList}</View>;

@@ -16,7 +16,7 @@ const WelcomeScreen = ({ navigation }) => {
   };
 
   return (
-    <ImageBackground style={styles.bgImage} source={require("../assets/1.jpg")}>
+    <ImageBackground style={styles.bgImage} source={require("../assets/c.gif")}>
       <Image style={styles.logo} source={require("../assets/logo.png")} />
       <View style={{ flex: 1, width: "100%", marginTop: "50%" }}>
         <Card style={styles.card}>

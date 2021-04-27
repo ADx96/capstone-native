@@ -20,7 +20,7 @@ const Signup = () => {
   };
 
   return (
-    <ImageBackground style={styles.bgImage} source={require("../assets/1.jpg")}>
+    <ImageBackground style={styles.bgImage} source={require("../assets/c.gif")}>
       <View style={{ flex: 1, width: "100%", marginTop: "10%" }}>
         <Card style={styles.card}>
           <TextInput

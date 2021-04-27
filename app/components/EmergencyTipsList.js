@@ -2,8 +2,9 @@ import { View } from "react-native";
 
 import * as React from "react";
 
-import EmergencyTipsItem from "./EmergencyTipsItem";
 import { observer } from "mobx-react";
+
+import EmergencyTipsItem from "./EmergencyTipsItem";
 import { tips1 } from "./TipsData";
 
 function EmergencyTipsList({ navigation }) {

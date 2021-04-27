@@ -24,8 +24,8 @@ import { Spinner } from "native-base";
 import AccedentsDetails from "./app/components/AccedentsTipsDetails";
 
 import PanikRequest from "./app/components/PanikRequest";
-import AccedentsTipsDetails from "./app/components/AccedentsTipsDetails";
-import EmergencytipsDetails from "./app/components/EmergencytipsDetails";
+import EmergencyTipsDetails from "./app/components/EmergencytipsDetails";
+
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 const { Navigator, Screen } = createStackNavigator();
@@ -39,11 +39,6 @@ const App = () => {
           <StatusBar />
           {authStore.isLoading === true ? (
             <Stack.Navigator initialRouteName="Welcome">
-              <Stack.Screen
-                name="AccedentsDetails"
-                component={AccedentsDetails}
-              />
-
               <Stack.Screen
                 name="Welcome"
                 component={WelcomeScreen}
@@ -61,11 +56,11 @@ const App = () => {
               <Drawer.Screen name="PanikRequest" component={PanikRequest} />
               <Drawer.Screen
                 name="AccedentsDetails"
-                component={AccedentsTipsDetails}
+                component={AccedentsDetails}
               />
               <Drawer.Screen
                 name="EmergencyTipsDeatails"
-                component={EmergencytipsDetails}
+                component={EmergencyTipsDetails}
               />
             </Drawer.Navigator>
           )}

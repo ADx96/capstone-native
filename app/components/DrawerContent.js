@@ -14,6 +14,10 @@ function DrawerContent(props) {
   const paperTheme = useTheme();
   if (authStore.loading) return <Spinner />;
 
+  const handleSubmit = async () => {
+    await authStore.signout();
+    authStore.isSignout ? navigation.navigate("Welcome") : null;
+  };
   return (
     <View style={{ flex: 1 }}>
       <DrawerContentScrollView {...props}>
@@ -62,7 +66,7 @@ function DrawerContent(props) {
             <Icon name="exit-to-app" color={color} size={size} />
           )}
           label="Sign Out"
-          onPress={() => {}}
+          onPress={handleSubmit}
         />
       </Drawer.Section>
     </View>

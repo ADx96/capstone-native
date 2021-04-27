@@ -1,23 +1,55 @@
-import React from "react";
-import { ListItem } from "native-base";
-import { Text, Image, StyleSheet, View, ImageBackground } from "react-native";
+import React, { useState } from "react";
+import {
+  Text,
+  StyleSheet,
+  View,
+  ImageBackground,
+  Image,
+  TouchableOpacity,
+} from "react-native";
 import { observer } from "mobx-react";
-import { Card, Title } from "react-native-paper";
+import { Card, Title, Button } from "react-native-paper";
 import MapView, { Marker } from "react-native-maps";
 import authStore from "../stores/authStore";
 import locationStore from "../stores/LocationStore";
+import alert from "../assets/alert.png";
 import { Spinner } from "@ui-kitten/components";
+import Icon from "react-native-vector-icons//FontAwesome5";
+import emergencyStore from "../stores/EmergencyStore";
 
 const PanikRequest = ({ route }) => {
+  const [emergency, setEmergency] = useState({
+    lat: "",
+    lng: "",
+    civilId: "",
+    firstName: "",
+    phonenumber: "",
+    type: "",
+  });
   const { type } = route.params;
   if (!locationStore.location) return <Spinner />;
   console.log(locationStore.location);
+
+  const handleSubmit = async () => {
+    setEmergency = {
+      firstName: authStore.user.firstName,
+      civilId: authStore.user.civilId,
+      phonenumber: authStore.user.phonenumber,
+      type: type.type,
+      lat: locationStore.location.lat,
+      lng: locationStore.location.lng,
+    };
+    await emergencyStore.createEmergency(setEmergency);
+  };
   return (
-    <ImageBackground style={styles.bgImage} source={require("../assets/c.gif")}>
+    <ImageBackground
+      style={styles.bgImage}
+      source={require("../assets/Alert.gif")}
+    >
       <View style={{ flex: 1 }}>
         <View
           style={{
-            marginTop: 50,
+            marginTop: 30,
             justifyContent: "center",
             alignItems: "center",
           }}
@@ -42,17 +74,68 @@ const PanikRequest = ({ route }) => {
             />
           </MapView>
         </View>
-        <View style={{ marginTop: 50, marginLeft: 85 }}>
+        <View style={{ marginTop: 20, marginLeft: 85 }}>
           <Card style={styles.Card}>
-            <Text style={styles.Text}>{authStore.user.firstName}</Text>
+            <Text style={styles.Text}>
+              <Icon size={25} name="user-injured" />
+              {authStore.user.firstName}
+            </Text>
           </Card>
           <Card style={styles.Card}>
-            <Text style={styles.Text}>{authStore.user.phonenumber}</Text>
+            <Text style={styles.Text}>
+              <Icon size={25} name="phone" /> {authStore.user.phonenumber}
+            </Text>
           </Card>
           <Card style={styles.Card}>
-            <Text style={styles.Text}>{authStore.user.civilId}</Text>
+            <Text style={styles.Text}>
+              <Icon size={25} name="id-card" />
+              {authStore.user.civilId}
+            </Text>
           </Card>
         </View>
+        <TouchableOpacity onPress={handleSubmit}>
+          <View
+            style={{
+              backgroundColor: "red",
+              width: 115,
+              height: 115,
+              borderRadius: 100,
+              marginLeft: 140,
+              marginTop: 50,
+            }}
+          >
+            <View
+              style={{
+                width: 100,
+                height: 100,
+                borderRadius: 100,
+                marginLeft: 7,
+
+                marginTop: 9,
+                borderColor: "#F5F5F5",
+
+                borderWidth: 1,
+              }}
+            ></View>
+          </View>
+
+          <View
+            style={{
+              backgroundColor: "#FF1313",
+              width: 70,
+              height: 70,
+              borderRadius: 100,
+              marginLeft: 162,
+              marginTop: -90,
+              shadowOpacity: 5,
+              shadowRadius: 11.11,
+
+              elevation: 17,
+            }}
+          >
+            <Image style={styles.tinyLogo2} source={alert}></Image>
+          </View>
+        </TouchableOpacity>
       </View>
     </ImageBackground>
   );
@@ -65,14 +148,22 @@ const styles = StyleSheet.create({
   container: {
     paddingTop: 25,
   },
+  tinyLogo2: {
+    width: 70,
+    height: 70,
+    position: "relative",
+    marginTop: -10,
+  },
   tinyLogo: {
     width: 70,
     height: 70,
+    marginTop: 150,
   },
   Text: {
     fontWeight: "bold",
-    marginLeft: 90,
+    marginLeft: 40,
     marginTop: 15,
+    fontSize: 20,
   },
   Title: {
     fontWeight: "bold",
@@ -107,6 +198,7 @@ const styles = StyleSheet.create({
     width: 220,
     marginTop: 30,
     height: 50,
+    opacity: 0.8,
     borderBottomRightRadius: 15,
     borderBottomLeftRadius: 15,
     borderTopRightRadius: 15,

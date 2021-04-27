@@ -5,6 +5,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 class AuthStore {
   user = null;
   isLoading = true;
+  isSignout = false;
   constructor() {
     makeAutoObservable(this);
   }
@@ -35,6 +36,7 @@ class AuthStore {
   signout = () => {
     AsyncStorage.removeItem("myToken");
     this.user = null;
+    this.isSignout = true;
   };
 
   signUp = async (userData) => {
