@@ -24,7 +24,7 @@ import { Spinner } from "native-base";
 import AccedentsDetails from "./app/components/AccedentsTipsDetails";
 
 import PanikRequest from "./app/components/PanikRequest";
-import EmergencyTipsDetails from "./app/components/EmergencytipsDetails";
+import EmergencyTipsDetails from "./app/components/EmergencyTipsDetails";
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -59,7 +59,7 @@ const App = () => {
                 component={AccedentsDetails}
               />
               <Drawer.Screen
-                name="EmergencyTipsDeatails"
+                name="EmergencyTipsDetails"
                 component={EmergencyTipsDetails}
               />
             </Drawer.Navigator>

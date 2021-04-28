@@ -5,14 +5,14 @@ import { observer } from "mobx-react";
 import { Card } from "react-native-paper";
 
 const AccedentsDetails = ({ route }) => {
-  const { tip2 } = route.param;
+  const { tip2 } = route.params;
 
   return (
     <View style={{ flex: 1 }}>
       <Image src={{ uri: tip2.image }} style={styles.tinyLogo} />
       <Card
         style={{
-          width: 375,
+          width: 410,
           height: 373,
           borderBottomRightRadius: 15,
           borderBottomLeftRadius: 15,
@@ -23,18 +23,18 @@ const AccedentsDetails = ({ route }) => {
             width: 0,
             height: 7,
           },
-          shadowOpacity: 0.41,
+          shadowOpacity: 5.41,
           shadowRadius: 9.11,
 
           elevation: 14,
-          marginTop: 280,
-          marginLeft: 15,
+          marginTop: "82%",
+          marginLeft: 1,
+          opacity: 0.5,
         }}
       >
         <Card.Content>
-          <View style={styles.container}></View>
-          <Text style={styles.baseText}>e</Text>
-          <Text style={styles.baseText2}>ee</Text>
+          <Text style={styles.baseText}>{tip2.name}</Text>
+          <Text style={styles.baseText2}>{tip2.Details}</Text>
         </Card.Content>
       </Card>
     </View>
@@ -46,22 +46,23 @@ const styles = StyleSheet.create({
     paddingTop: 25,
   },
   tinyLogo: {
-    width: 70,
-    height: 70,
+    width: 100,
+    height: 100,
+    marginTop: 10,
   },
   baseText: {
     fontWeight: "bold",
-    marginLeft: "70%",
-    marginTop: "-35%",
+    marginLeft: "10%",
+    marginTop: "15%",
   },
   baseText2: {
     fontWeight: "bold",
-    marginLeft: "37%",
-    marginTop: 15,
+    marginLeft: "30%",
+    marginTop: 100,
   },
   baseText3: {
     fontWeight: "bold",
-    marginLeft: "37%",
+    marginLeft: "17%",
   },
   baseText4: {
     fontWeight: "bold",

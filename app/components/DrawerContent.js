@@ -15,8 +15,8 @@ function DrawerContent(props) {
   if (authStore.loading) return <Spinner />;
 
   const handleSubmit = async () => {
+    props.navigation.replace("Welcome");
     await authStore.signout();
-    authStore.isSignout ? navigation.navigate("Welcome") : null;
   };
   return (
     <View style={{ flex: 1 }}>

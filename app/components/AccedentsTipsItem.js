@@ -3,8 +3,10 @@ import GradientButton from "react-native-gradient-buttons";
 
 import { Text, Image, StyleSheet, View, TouchableOpacity } from "react-native";
 import { observer } from "mobx-react";
+import { useNavigation } from "@react-navigation/native";
 
-const AccedentsTipsItem = ({ tip2, navigation }) => {
+const AccedentsTipsItem = ({ tip2 }) => {
+  const navigation = useNavigation();
   return (
     <View>
       <View style={styles.container}>
@@ -12,7 +14,6 @@ const AccedentsTipsItem = ({ tip2, navigation }) => {
 
         <Image style={styles.tinyLogo} source={{ uri: tip2.image }} />
       </View>
-      <TouchableOpacity />
       <GradientButton
         style={{ marginVertical: 8 }}
         text="Details"
@@ -24,7 +25,7 @@ const AccedentsTipsItem = ({ tip2, navigation }) => {
         impact
         impactStyle="Light"
         style={{ marginTop: 100, position: "absolute", marginLeft: 250 }}
-        onPress={() => navigation.navigate("AccedentsDetails", { tip2 })}
+        onPressAction={() => navigation.navigate("AccedentsDetails", { tip2 })}
       />
     </View>
   );

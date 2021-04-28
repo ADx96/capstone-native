@@ -1,7 +1,7 @@
 export const tips1 = [
   {
     id: 1,
-    name: "Chocolate Chip Cookie",
+    name: "Fire Chip Cookie",
 
     Details: 10,
     image:
@@ -37,7 +37,7 @@ export const tips1 = [
 export const tips2 = [
   {
     id: 1,
-    name: "Chocolate Chip Cookie",
+    name: "Accedent Chip Cookie",
 
     Details: 10,
     image:

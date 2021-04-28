@@ -31,15 +31,15 @@ const PanikRequest = ({ route }) => {
   console.log(locationStore.location);
 
   const handleSubmit = async () => {
-    setEmergency = {
-      firstName: authStore.user.firstName,
-      civilId: authStore.user.civilId,
-      phonenumber: authStore.user.phonenumber,
+    const Emergency = {
       type: type.type,
       lat: locationStore.location.lat,
       lng: locationStore.location.lng,
+      location: locationStore.location,
     };
-    await emergencyStore.createEmergency(setEmergency);
+    console.log("efe", Emergency);
+    await emergencyStore.createEmergency(Emergency);
+    navigation.navigate("History");
   };
   return (
     <ImageBackground

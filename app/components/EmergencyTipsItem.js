@@ -1,11 +1,13 @@
 import React from "react";
 import GradientButton from "react-native-gradient-buttons";
+import { useNavigation } from "@react-navigation/native";
 
 import { Text, Image, StyleSheet, View } from "react-native";
 import { observer } from "mobx-react";
 import { Card } from "react-native-paper";
 
-const EmergencyTipsItem = ({ tip1, navigation }) => {
+const EmergencyTipsItem = ({ tip1 }) => {
+  const navigation = useNavigation();
   return (
     <View>
       <View style={styles.container}>
@@ -25,7 +27,9 @@ const EmergencyTipsItem = ({ tip1, navigation }) => {
         impact
         impactStyle="Light"
         style={{ marginTop: 100, position: "absolute", marginLeft: 250 }}
-        onPress={() => navigation.navigate("EmergencyTipsDetails", { tip1 })}
+        onPressAction={() =>
+          navigation.navigate("EmergencyTipsDetails", { tip1 })
+        }
       />
     </View>
   );
