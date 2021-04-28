@@ -1,4 +1,4 @@
-import { makeAutoObservable } from "mobx";
+import { makeAutoObservable, runInAction } from "mobx";
 import instance from "./instance";
 
 class EmergencyStore {
@@ -8,8 +8,10 @@ class EmergencyStore {
   fetchEmergency = async () => {
     try {
       const response = await instance.get("/emergency");
-      this.emergencies = response.data;
-      this.loading = false;
+      runInAction(() => {
+        this.emergencies = response.data;
+        this.loading = false;
+      });
     } catch (error) {
       console.error("Emergency -> fetchEmergency -> error", error);
     }
@@ -18,9 +20,9 @@ class EmergencyStore {
   createEmergency = async (newEmergency) => {
     try {
       const res = await instance.post("/emergency", newEmergency);
-      this.emergencies.push(res.data);
+      runInAction(() => this.emergencies.push(res.data));
     } catch (error) {
-      console.log("log1 -> Send Emergency -> error", error);
+      console.log("log1 -> createHotel -> error", error);
     }
   };
 

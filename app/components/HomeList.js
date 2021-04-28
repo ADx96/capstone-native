@@ -11,9 +11,9 @@ import { Spinner } from "@ui-kitten/components";
 
 function HomeList({ navigation }) {
   if (typeStore.loading) return <Spinner />;
-
-  const homeList = typeStore.types.map((type) => (
-    <HomeItem type={type} key={type.id} navigation={navigation} />
+  const data = typeStore.types;
+  const homeList = data.map((data, key) => (
+    <HomeItem key={key} type={data} navigation={navigation} />
   ));
 
   return (
@@ -24,6 +24,8 @@ function HomeList({ navigation }) {
   );
 }
 
+export default observer(HomeList);
+
 const styles = StyleSheet.create({
   Title: {
     marginLeft: 90,
@@ -32,5 +34,3 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
 });
-
-export default observer(HomeList);

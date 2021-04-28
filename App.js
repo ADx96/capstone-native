@@ -7,6 +7,11 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 //Screens
 import WelcomeScreen from "./app/screens/WelcomeScreen";
 import Signup from "./app/screens/SignupScreen";
+import AccedentsDetails from "./app/components/AccedentsTipsDetails";
+import Profile from "./app/screens/ProfileScreen";
+import PanikRequest from "./app/components/PanikRequest";
+import EmergencyTipsDetails from "./app/components/EmergencyTipsDetails";
+import DrawerContent from "./app/components/DrawerContent";
 
 //Auth
 import authStore from "./app/stores/authStore";
@@ -17,58 +22,49 @@ import MainTapScreen from "./app/components/TabNavigator";
 import { ApplicationProvider, IconRegistry } from "@ui-kitten/components";
 import * as eva from "@eva-design/eva";
 import { EvaIconsPack } from "@ui-kitten/eva-icons";
-import DrawerContent from "./app/components/DrawerContent";
-import Profile from "./app/screens/ProfileScreen";
-import { Spinner } from "native-base";
-
-import AccedentsDetails from "./app/components/AccedentsTipsDetails";
-
-import PanikRequest from "./app/components/PanikRequest";
-import EmergencyTipsDetails from "./app/components/EmergencyTipsDetails";
-
-const Stack = createStackNavigator();
-const Drawer = createDrawerNavigator();
-const { Navigator, Screen } = createStackNavigator();
 
 const App = () => {
+  const Stack = createStackNavigator();
+  const Drawer = createDrawerNavigator();
   return (
-    <>
+    <NavigationContainer style={styles.container}>
       <IconRegistry icons={EvaIconsPack} />
       <ApplicationProvider {...eva} theme={eva.light}>
-        <NavigationContainer style={styles.container}>
-          <StatusBar />
-          {authStore.isLoading === true ? (
-            <Stack.Navigator initialRouteName="Welcome">
-              <Stack.Screen
-                name="Welcome"
-                component={WelcomeScreen}
-                options={{ headerShown: false }}
-              />
-              <Stack.Screen name="Signup" component={Signup} />
-            </Stack.Navigator>
-          ) : (
-            <Drawer.Navigator
-              initialRouteName="Home"
-              drawerContent={(props) => <DrawerContent {...props} />}
-            >
-              <Drawer.Screen name="Profile" component={Profile} />
-              <Drawer.Screen name="Home" component={MainTapScreen} />
-              <Drawer.Screen name="PanikRequest" component={PanikRequest} />
-              <Drawer.Screen
-                name="AccedentsDetails"
-                component={AccedentsDetails}
-              />
-              <Drawer.Screen
-                name="EmergencyTipsDetails"
-                component={EmergencyTipsDetails}
-              />
-            </Drawer.Navigator>
-          )}
-        </NavigationContainer>
+        <StatusBar />
+        {authStore.isLoading === true || !authStore.user ? (
+          <Stack.Navigator initialRouteName="Welcome">
+            <Stack.Screen
+              name="Welcome"
+              component={WelcomeScreen}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              options={{ headerShown: false }}
+              name="Signup"
+              component={Signup}
+            />
+          </Stack.Navigator>
+        ) : (
+          <Drawer.Navigator
+            initialRouteName="Home"
+            drawerContent={(props) => <DrawerContent {...props} />}
+          >
+            <Drawer.Screen name="Home" component={MainTapScreen} />
+            <Drawer.Screen name="Profile" component={Profile} />
+            <Drawer.Screen name="PanikRequest" component={PanikRequest} />
+            <Drawer.Screen
+              name="AccedentsDetails"
+              component={AccedentsDetails}
+            />
+            <Drawer.Screen name="Details" component={EmergencyTipsDetails} />
+          </Drawer.Navigator>
+        )}
       </ApplicationProvider>
-    </>
+    </NavigationContainer>
   );
 };
+
+export default observer(App);
 
 const styles = StyleSheet.create({
   container: {
@@ -78,5 +74,3 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
-
-export default observer(App);

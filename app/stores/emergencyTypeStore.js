@@ -1,4 +1,4 @@
-import { makeAutoObservable } from "mobx";
+import { runInAction, makeAutoObservable } from "mobx";
 import instance from "./instance";
 
 class EmergencyTypeMobx {
@@ -11,8 +11,10 @@ class EmergencyTypeMobx {
   fetchType = async () => {
     try {
       const response = await instance.get("/type");
-      this.types = response.data;
-      this.loading = false;
+      runInAction(() => {
+        this.types = response.data;
+        this.loading = false;
+      });
     } catch (e) {
       console.log(e);
     }

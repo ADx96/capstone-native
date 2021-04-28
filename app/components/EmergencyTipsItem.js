@@ -27,9 +27,7 @@ const EmergencyTipsItem = ({ tip1 }) => {
         impact
         impactStyle="Light"
         style={{ marginTop: 100, position: "absolute", marginLeft: 250 }}
-        onPressAction={() =>
-          navigation.navigate("EmergencyTipsDetails", { tip1 })
-        }
+        onPressAction={() => navigation.navigate("Details", { tip1 })}
       />
     </View>
   );

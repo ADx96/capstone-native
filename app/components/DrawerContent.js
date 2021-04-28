@@ -1,30 +1,30 @@
 import React from "react";
 import { View, StyleSheet, Image } from "react-native";
-import { useTheme, Avatar, Title, Caption, Drawer } from "react-native-paper";
+import { Avatar, Title, Caption, Drawer } from "react-native-paper";
 import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
 import pic from "../assets/drawer.jpg";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import authStore from "../stores/authStore";
 import { observer } from "mobx-react";
 import { Spinner } from "native-base";
+import { appendApi } from "../stores/instance";
 
-// import { AuthContext } from "../components/context";
-
-function DrawerContent(props) {
-  const paperTheme = useTheme();
+const DrawerContent = ({ navigation }) => {
   if (authStore.loading) return <Spinner />;
-
   const handleSubmit = async () => {
-    props.navigation.replace("Welcome");
     await authStore.signout();
   };
+
   return (
     <View style={{ flex: 1 }}>
-      <DrawerContentScrollView {...props}>
+      <DrawerContentScrollView>
         <View style={styles.drawerContent}>
           <View style={styles.userInfoSection}>
             <View style={{ flexDirection: "row", marginTop: 15 }}>
-              <Avatar.Image source={authStore.user.image} size={60} />
+              <Avatar.Image
+                source={{ uri: appendApi(authStore.user.image) }}
+                size={60}
+              />
               <View style={{ marginLeft: 15, flexDirection: "column" }}>
                 <Title style={styles.title}>{authStore.user.firstName}</Title>
                 <Caption style={styles.caption}>
@@ -45,7 +45,7 @@ function DrawerContent(props) {
               )}
               label="Profile"
               onPress={() => {
-                props.navigation.navigate("Profile");
+                navigation.navigate("Profile");
               }}
             />
             <DrawerItem
@@ -54,7 +54,7 @@ function DrawerContent(props) {
               )}
               label="Settings"
               onPress={() => {
-                props.navigation.navigate("Settings");
+                navigation.navigate("Settings");
               }}
             />
           </Drawer.Section>
@@ -71,7 +71,9 @@ function DrawerContent(props) {
       </Drawer.Section>
     </View>
   );
-}
+};
+
+export default observer(DrawerContent);
 
 const styles = StyleSheet.create({
   userInfoSection: {
@@ -125,5 +127,3 @@ const styles = StyleSheet.create({
     padding: 60,
   },
 });
-
-export default observer(DrawerContent);
