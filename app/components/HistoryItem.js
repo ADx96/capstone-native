@@ -6,47 +6,44 @@ import emergencyStore from "../stores/EmergencyStore";
 
 const HistoryItem = ({ emergency }) => {
   return (
-    <View style={{ flex: 1, marginLeft: 40 }}>
-      <View>
-        <Card
-          style={{
-            width: 320,
-            height: 150,
-            borderBottomRightRadius: 15,
-            borderBottomLeftRadius: 15,
-            borderTopRightRadius: 15,
-            borderTopLeftRadius: 15,
-            shadowColor: "#000",
-            shadowOffset: {
-              width: 0,
-              height: 7,
-            },
-            shadowOpacity: 0.41,
-            shadowRadius: 9.11,
+    <View style={{ marginTop: 20, marginLeft: 40 }}>
+      <Card
+        style={{
+          width: 320,
+          height: 150,
+          borderBottomRightRadius: 15,
+          borderBottomLeftRadius: 15,
+          borderTopRightRadius: 15,
+          borderTopLeftRadius: 15,
+          shadowColor: "#000",
+          shadowOffset: {
+            width: 0,
+            height: 7,
+          },
+          shadowOpacity: 0.41,
+          shadowRadius: 9.11,
 
-            elevation: 14,
-          }}
-        >
-          <Card.Content>
-            <View style={styles.container}>
-              <Image
-                style={styles.tinyLogo}
-                source={{
-                  uri: "https://reactnative.dev/img/tiny_logo.png",
-                }}
-              />
-            </View>
-            <Text style={styles.baseText}>Status:{emergency.status}</Text>
-            <Text style={styles.baseText2}>
-              AMBULANCE{emergency.Types.type}
-            </Text>
-            <Text style={styles.baseText3}>
-              Date and time{emergency.createdAt}
-            </Text>
-            <Text style={styles.baseText4}>Location:{emergency.location}</Text>
-          </Card.Content>
-        </Card>
-      </View>
+          elevation: 14,
+        }}
+      >
+        <Card.Content>
+          <View style={styles.container}>
+            <Image
+              style={styles.tinyLogo}
+              source={{
+                uri: "https://reactnative.dev/img/tiny_logo.png",
+              }}
+            />
+          </View>
+          <Text style={styles.baseText}>Status:{emergency.status}</Text>
+          <Text style={styles.baseText2}>AMBULANCE{emergency.Types.type}</Text>
+          <Text style={styles.baseText3}>
+            Date and time:{"\n"}
+            {emergency.createdAt}
+          </Text>
+          <Text style={styles.baseText4}>Location:{emergency.location}</Text>
+        </Card.Content>
+      </Card>
     </View>
   );
 };
@@ -61,7 +58,7 @@ const styles = StyleSheet.create({
   },
   baseText: {
     fontWeight: "bold",
-    marginLeft: "70%",
+    marginLeft: "65%",
     marginTop: "-35%",
   },
   baseText2: {
@@ -82,4 +79,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HistoryItem;
+export default observer(HistoryItem);

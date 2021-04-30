@@ -1,9 +1,10 @@
-import { Button, Icon } from "native-base";
+import { Button } from "native-base";
 import React, { useState } from "react";
 import { StyleSheet, ImageBackground, Image, Text, View } from "react-native";
 import authStore from "../stores/authStore";
-import { Card, TextInput } from "react-native-paper";
+import { Avatar, Card, TextInput } from "react-native-paper";
 import { observer } from "mobx-react";
+import Icon from "react-native-vector-icons/FontAwesome5";
 
 const Signup = () => {
   const [user, setUser] = useState({
@@ -21,45 +22,47 @@ const Signup = () => {
 
   return (
     <ImageBackground style={styles.bgImage} source={require("../assets/c.gif")}>
-      <View style={{ flex: 1, width: "100%", marginTop: "10%" }}>
+      <View style={{ flex: 1, width: "100%", marginTop: "20%" }}>
+        <Avatar.Image style={{ marginLeft: "35%" }} size={100} />
         <Card style={styles.card}>
           <TextInput
             style={styles.input}
-            placeholder="Place your Text"
+            placeholder="First Name"
             onChangeText={(firstName) => setUser({ ...user, firstName })}
           />
         </Card>
         <Card style={styles.card}>
           <TextInput
             style={styles.input}
-            placeholder="Place your Text"
+            placeholder="Last Name"
             onChangeText={(lastName) => setUser({ ...user, lastName })}
           />
         </Card>
         <Card style={styles.card}>
           <TextInput
             style={styles.input}
+            placeholder="Mobile Number"
             onChangeText={(phonenumber) => setUser({ ...user, phonenumber })}
           />
         </Card>
         <Card style={styles.card}>
           <TextInput
             style={styles.input}
-            placeholder="Place your Text"
+            placeholder="Civil ID"
             onChangeText={(civilId) => setUser({ ...user, civilId })}
           />
         </Card>
         <Card style={styles.card}>
           <TextInput
             style={styles.input}
-            placeholder="Place your Text"
+            placeholder="User Name"
             onChangeText={(username) => setUser({ ...user, username })}
           />
         </Card>
         <Card style={styles.card}>
           <TextInput
             style={styles.input}
-            placeholder="Place your Text"
+            placeholder="Password"
             secureTextEntry={true}
             onChangeText={(password) => setUser({ ...user, password })}
           />
@@ -71,13 +74,22 @@ const Signup = () => {
           onPress={handleSubmit}
           style={{
             borderRadius: 10,
-            width: 150,
-            marginLeft: 120,
+            width: 180,
+            marginLeft: 110,
             marginTop: 30,
+            backgroundColor: "#1f59b2",
           }}
         >
-          <Icon name="pulse" />
-          <Text style={{ fontSize: 20, fontWeight: "bold" }}>SignUp</Text>
+          <Icon
+            style={{
+              fontSize: 17,
+              width: 29,
+              color: "white",
+              marginLeft: -10,
+            }}
+            name="clipboard-check"
+          />
+          <Text style={{ color: "white", fontWeight: "bold" }}>SignUp</Text>
         </Button>
       </View>
     </ImageBackground>
@@ -99,13 +111,14 @@ const styles = StyleSheet.create({
     width: 250,
     marginTop: 8,
     height: 50,
+    marginLeft: 10,
   },
 
   card: {
-    opacity: 1,
+    opacity: 0.8,
     marginTop: 20,
-    marginLeft: 70,
-    width: 250,
+    marginLeft: 60,
+    width: 270,
     height: 57,
     borderBottomRightRadius: 20,
     borderBottomLeftRadius: 20,

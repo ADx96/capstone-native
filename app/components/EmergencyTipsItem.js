@@ -11,7 +11,6 @@ const EmergencyTipsItem = ({ tip1 }) => {
   return (
     <View>
       <View style={styles.container}>
-        <Card></Card>
         <Text style={styles.baseText}>{tip1.name}</Text>
 
         <Image style={styles.tinyLogo} source={{ uri: tip1.image }} />

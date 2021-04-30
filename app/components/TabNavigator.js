@@ -1,5 +1,6 @@
 import React from "react";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { AnimatedTabBarNavigator } from "react-native-animated-nav-tab-bar";
+
 import Icon from "react-native-vector-icons/FontAwesome5";
 
 //Screens
@@ -7,32 +8,31 @@ import HomeStackScreen from "../screens/HomeScreen";
 import TipStackScreen from "../screens/TipScreen";
 import HistoryStackScreen from "../screens/HistoryScreen";
 
-const Tab = createBottomTabNavigator();
+const Tab = AnimatedTabBarNavigator();
 export const MainTapScreen = () => {
   return (
     <Tab.Navigator
-      initialRouteName="Home"
+      initialRouteName="Emergency"
       labeled=""
+      floating="true"
       component="HomeStackScreen"
       tabBarOptions={{
-        activeTintColor: "#0125FA",
+        activeTintColor: "white",
         inactiveTintColor: "black",
-        showLabel: false,
-        style: {
-          borderWidth: 0,
-          borderBottomWidth: 0,
-          backgroundColor: "#FFFFFF",
+        activeBackgroundColor: "#003385",
+        tabStyle: {
           borderBottomRightRadius: 20,
           borderBottomLeftRadius: 20,
           borderTopRightRadius: 20,
           borderTopLeftRadius: 20,
-          borderColor: "white",
-          position: "absolute",
-          marginBottom: 45,
+          opacity: 0.8,
           marginLeft: 60,
           height: 55,
           width: "70%",
         },
+      }}
+      appearance={{
+        floating: true,
       }}
     >
       <Tab.Screen
@@ -45,7 +45,7 @@ export const MainTapScreen = () => {
         }}
       />
       <Tab.Screen
-        name="Home"
+        name="Emergency"
         component={HomeStackScreen}
         options={{
           tabBarIcon: ({ color }) => (

@@ -1,42 +1,47 @@
 import React from "react";
-import { Text, Image, StyleSheet, View } from "react-native";
+import { Text, Image, StyleSheet, View, ImageBackground } from "react-native";
 import { observer } from "mobx-react";
 import { Card } from "react-native-paper";
-import { appendApi } from "../stores/instance";
 
 const EmergencyTipsDetails = ({ route }) => {
   const { tip1 } = route.params;
 
   return (
     <View style={{ flex: 1 }}>
-      <Image source={{ uri: appendApi(tip1.image) }} style={styles.tinyLogo} />
-      <Card
-        style={{
-          width: 375,
-          height: 373,
-          borderBottomRightRadius: 15,
-          borderBottomLeftRadius: 15,
-          borderTopRightRadius: 15,
-          borderTopLeftRadius: 15,
-          shadowColor: "#000",
-          shadowOffset: {
-            width: 0,
-            height: 7,
-          },
-          shadowOpacity: 0.41,
-          shadowRadius: 9.11,
-
-          elevation: 14,
-          marginTop: 280,
-          marginLeft: 15,
-        }}
+      <ImageBackground
+        style={{ width: "100%", flex: 1 }}
+        source={{ uri: tip1.image }}
       >
-        <Card.Content>
-          <View style={styles.container}></View>
-          <Text style={styles.baseText}>{tip1.name}</Text>
-          <Text style={styles.baseText2}>{tip1.Details}</Text>
-        </Card.Content>
-      </Card>
+        <Card
+          style={{
+            width: 410,
+            height: 373,
+            borderBottomRightRadius: 15,
+            borderBottomLeftRadius: 15,
+            borderTopRightRadius: 15,
+            borderTopLeftRadius: 15,
+            shadowColor: "#000",
+            shadowOffset: {
+              width: 0,
+              height: 7,
+            },
+            shadowOpacity: 5.41,
+            shadowRadius: 9.11,
+            opacity: 0.7,
+            elevation: 14,
+            marginTop: "108%",
+            marginLeft: 1,
+            opacity: 0.8,
+            zIndex: 1,
+          }}
+        >
+          <Card.Content>
+            <View style={styles.container}></View>
+            <Text style={styles.baseText}>{tip1.name}</Text>
+            <Text style={styles.baseText2}>{tip1.Details}</Text>
+          </Card.Content>
+        </Card>
+      </ImageBackground>
     </View>
   );
 };
@@ -46,13 +51,14 @@ const styles = StyleSheet.create({
     paddingTop: 25,
   },
   tinyLogo: {
-    width: 70,
-    height: 70,
+    width: 420,
+    height: 820,
   },
   baseText: {
     fontWeight: "bold",
-    marginLeft: "70%",
-    marginTop: "-35%",
+    marginLeft: "10%",
+    marginTop: "-5%",
+    fontSize: 40,
   },
   baseText2: {
     fontWeight: "bold",

@@ -1,4 +1,4 @@
-import { StyleSheet, TouchableOpacity } from "react-native";
+import { View, StyleSheet, Image, Alert, TouchableOpacity } from "react-native";
 
 import * as React from "react";
 import { Spinner, Text } from "native-base";
@@ -8,48 +8,69 @@ import typeStore from "../stores/emergencyTypeStore";
 import { appendApi } from "../stores/instance";
 
 const HomeItem = ({ type, navigation }) => {
-  if (typeStore.loading) return <Spinner />;
+  if (typeStore.loading)
+    return (
+      <Spinner
+        style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+      />
+    );
+
   return (
     <TouchableOpacity
-      style={styles.container}
       onPress={() => navigation.navigate("PanikRequest", { type })}
     >
-      <Card>
-        <Card.Cover
-          source={{ uri: appendApi(type.image) }}
-          style={styles.coverImage}
-        />
-        <Text style={styles.Text}>{type.type}</Text>
-      </Card>
+      <View style={{ marginTop: 10, marginLeft: 40 }}>
+        <Card style={styles.Card}>
+          <Text style={styles.Text}>{type.type}</Text>
+          <Image
+            style={styles.coverImage}
+            source={{ uri: appendApi(type.image) }}
+          ></Image>
+        </Card>
+      </View>
     </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignContent: "center",
-  },
   Text: {
     fontWeight: "bold",
     marginLeft: 8,
     marginTop: 60,
+    zIndex: 1,
+    color: "white",
   },
-  Title: {
-    marginLeft: 80,
-    marginTop: 20,
-    justifyContent: "center",
-    alignItems: "center",
+  Card: {
+    width: 320,
+    marginTop: 10,
+    height: 87,
+    borderBottomRightRadius: 15,
+    borderBottomLeftRadius: 15,
+    borderTopRightRadius: 15,
+    borderTopLeftRadius: 15,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 7,
+    },
+    shadowOpacity: 0.41,
+    shadowRadius: 9.11,
+
+    elevation: 14,
   },
   coverImage: {
-    position: "absolute",
-    alignContent: "center",
-    flex: 1,
-    minWidth: 250,
-    maxWidth: 300,
-    minHeight: 50,
-    maxHeight: 100,
+    width: 320,
+    marginTop: -82,
+    height: 87,
+    borderBottomRightRadius: 15,
+    borderBottomLeftRadius: 15,
+    borderTopRightRadius: 15,
+    borderTopLeftRadius: 15,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 7,
+    },
   },
 });
 

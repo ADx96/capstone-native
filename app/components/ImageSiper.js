@@ -39,7 +39,7 @@ const styles = {
 
   text: {
     color: "#fff",
-    fontSize: 30,
+    fontSize: 40,
     fontWeight: "bold",
   },
 
@@ -52,24 +52,21 @@ const styles = {
 export default function ImageSwiper() {
   return (
     <View style={styles.container}>
-      <Swiper style={styles.wrapper} height={200} horizontal={false} autoplay>
+      <Swiper style={styles.wrapper} height={100} horizontal={false} autoplay>
         <View style={styles.slide1}>
-          <Text style={styles.text}>Hello Swiper</Text>
+          <Text style={styles.text}>Stay</Text>
         </View>
         <View style={styles.slide2}>
-          <Text style={styles.text}>Beautiful</Text>
+          <Text style={styles.text}>Home</Text>
         </View>
         <View style={styles.slide3}>
-          <Text style={styles.text}>And simple</Text>
+          <Text style={styles.text}>Safe</Text>
         </View>
       </Swiper>
 
       <Swiper
         style={styles.wrapper}
         height={240}
-        onMomentumScrollEnd={(e, state, context) =>
-          console.log("index:", state.index)
-        }
         dot={
           <View
             style={{
@@ -114,7 +111,7 @@ export default function ImageSwiper() {
           <Image
             resizeMode="stretch"
             style={styles.image}
-            // source={require("./img/1.jpg")}
+            source={require("../assets/banner1.jpg")}
           />
         </View>
         <View
@@ -124,7 +121,7 @@ export default function ImageSwiper() {
           <Image
             resizeMode="stretch"
             style={styles.image}
-            // source={require("./img/2.jpg")}
+            source={require("../assets/banner2.jpg")}
           />
         </View>
         <View
@@ -134,19 +131,7 @@ export default function ImageSwiper() {
           <Image
             resizeMode="stretch"
             style={styles.image}
-            // source={require("./img/3.jpg")}
-          />
-        </View>
-        <View
-          style={styles.slide}
-          title={
-            <Text numberOfLines={1}>Learn from Kim K to land that job</Text>
-          }
-        >
-          <Image
-            resizeMode="stretch"
-            style={styles.image}
-            // source={require("./img/4.jpg")}
+            source={require("../assets/banner3.jpg")}
           />
         </View>
       </Swiper>

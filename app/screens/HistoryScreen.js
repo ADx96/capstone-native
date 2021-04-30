@@ -12,15 +12,23 @@ const HistoryStackScreen = ({ navigation }) => {
         name="History"
         component={HistoryComponent}
         options={{
-          headerLeft: () => (
+          title: "",
+          headerRight: () => (
             <Ionicons.Button
               name="menu"
               size={29}
-              backgroundColor="white"
               onPress={() => navigation.openDrawer()}
-              color="#000"
+              color="white"
+              backgroundColor="black"
             />
           ),
+          headerShown: true,
+          headerTransparent: true,
+
+          //Set Header text color
+          headerTitleStyle: {
+            fontWeight: "bold", //Set Header text style
+          },
         }}
       />
     </HistoryStack.Navigator>

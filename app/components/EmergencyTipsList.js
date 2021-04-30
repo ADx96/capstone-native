@@ -4,8 +4,8 @@ import * as React from "react";
 
 import { observer } from "mobx-react";
 
-import EmergencyTipsItem from "./EmergencyTipsItem";
 import { tips1 } from "./TipsData";
+import EmergencyTipsItem from "./EmergencyTipsItem";
 
 function EmergencyTipsList({ navigation }) {
   const tip1List = tips1.map((tip1) => (

@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import React from "react";
+import React, { Profiler } from "react";
 import { StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -8,7 +8,7 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import WelcomeScreen from "./app/screens/WelcomeScreen";
 import Signup from "./app/screens/SignupScreen";
 import AccedentsDetails from "./app/components/AccedentsTipsDetails";
-import Profile from "./app/screens/ProfileScreen";
+
 import PanikRequest from "./app/components/PanikRequest";
 import EmergencyTipsDetails from "./app/components/EmergencyTipsDetails";
 import DrawerContent from "./app/components/DrawerContent";
@@ -22,6 +22,7 @@ import MainTapScreen from "./app/components/TabNavigator";
 import { ApplicationProvider, IconRegistry } from "@ui-kitten/components";
 import * as eva from "@eva-design/eva";
 import { EvaIconsPack } from "@ui-kitten/eva-icons";
+import Profile from "./app/screens/Profile";
 
 const App = () => {
   const Stack = createStackNavigator();
@@ -48,6 +49,16 @@ const App = () => {
           <Drawer.Navigator
             initialRouteName="Home"
             drawerContent={(props) => <DrawerContent {...props} />}
+            overlayColor="#000000bf"
+            statusBarAnimation="fade"
+            drawerStyle={{
+              backgroundColor: "white",
+              width: 240,
+            }}
+            drawerContentOptions={{
+              activeTintColor: "#e91e63",
+              itemStyle: { marginVertical: 30 },
+            }}
           >
             <Drawer.Screen name="Home" component={MainTapScreen} />
             <Drawer.Screen name="Profile" component={Profile} />

@@ -3,46 +3,19 @@ import { StyleSheet, View } from "react-native";
 
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import MapView, { Marker } from "react-native-maps";
-
-import { TabBar, Tab, Layout, Text, Icon } from "@ui-kitten/components";
+import Icon from "react-native-vector-icons/FontAwesome5";
+import { TabBar, Tab, Layout, Text } from "@ui-kitten/components";
 import EmergencyScreen from "../screens/EmergencyScreen";
 import AccedentScreen from "../screens/AccedentScreen";
 import CovidScreen from "../screens/CovidScreen";
-import EmergencytipsDetails from "./EmergencyTipsDetails";
-import AccedentsTipsDetails from "./AccedentsTipsDetails";
 
 const { Navigator, Screen } = createMaterialTopTabNavigator();
 
-const PersonIcon = (props) => <Icon {...props} name="person-outline" />;
+const PersonIcon = () => <Icon size={20} name="fire-alt" />;
 
-const BellIcon = (props) => <Icon {...props} name="bell-outline" />;
+const BellIcon = () => <Icon size={20} name="car-crash" />;
 
-const EmailIcon = (props) => <Icon {...props} name="email-outline" />;
-
-//thiis is the map code
-
-// const CovidScreen = () => (
-//   <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-//     <MapView
-//       style={styles.map}
-//       initialRegion={{
-//         latitude: 37.78825,
-//         longitude: -122.4324,
-//         latitudeDelta: 0.0922,
-//         longitudeDelta: 0.0421,
-//       }}
-//     >
-//       <Marker
-//         title="sdsd"
-//         description="sfefd"
-//         coordinate={{
-//           latitude: 37.78825,
-//           longitude: -122.4324,
-//         }}
-//       />
-//     </MapView>
-//   </View>
-// );
+const EmailIcon = () => <Icon size={20} name="virus" />;
 
 const TopTabBar = ({ navigation, state }) => (
   <TabBar

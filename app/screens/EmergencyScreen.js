@@ -5,7 +5,7 @@ import EmergencyTipsList from "../components/EmergencyTipsList";
 
 export default function EmergencyScreen() {
   return (
-    <View style={{ flex: 1, marginTop: 20 }}>
+    <View style={{ flex: 1, marginTop: 10 }}>
       <EmergencyTipsList />
     </View>
   );

@@ -29,7 +29,7 @@ export default observer(HomeList);
 const styles = StyleSheet.create({
   Title: {
     marginLeft: 90,
-    marginTop: 30,
+    marginTop: 100,
     fontSize: 20,
     fontWeight: "bold",
   },

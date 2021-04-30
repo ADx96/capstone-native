@@ -18,14 +18,6 @@ import Icon from "react-native-vector-icons//FontAwesome5";
 import emergencyStore from "../stores/EmergencyStore";
 
 const PanikRequest = ({ route }) => {
-  const [emergency, setEmergency] = useState({
-    lat: "",
-    lng: "",
-    civilId: "",
-    firstName: "",
-    phonenumber: "",
-    type: "",
-  });
   const { type } = route.params;
   if (!locationStore.location) return <Spinner />;
   console.log(locationStore.location);
@@ -37,9 +29,8 @@ const PanikRequest = ({ route }) => {
       lng: locationStore.location.lng,
       location: locationStore.location,
     };
-    console.log("efe", Emergency);
     await emergencyStore.createEmergency(Emergency);
-    navigation.navigate("History");
+    console.log("efe", Emergency);
   };
   return (
     <ImageBackground
@@ -74,7 +65,7 @@ const PanikRequest = ({ route }) => {
             />
           </MapView>
         </View>
-        <View style={{ marginTop: 20, marginLeft: 85 }}>
+        <View style={{ marginTop: 15, marginLeft: 85 }}>
           <Card style={styles.Card}>
             <Text style={styles.Text}>
               <Icon size={25} name="user-injured" />
@@ -167,7 +158,7 @@ const styles = StyleSheet.create({
   },
   Title: {
     fontWeight: "bold",
-    fontSize: 40,
+    fontSize: 30,
     marginLeft: -20,
     marginTop: 50,
     color: "white",

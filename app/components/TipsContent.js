@@ -5,7 +5,7 @@ import { AppNavigator } from "./TopTabNavigator";
 
 export default function Tips() {
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ marginTop: 100, flex: 1 }}>
       <AppNavigator />
     </View>
   );

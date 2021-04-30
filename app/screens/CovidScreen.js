@@ -3,10 +3,6 @@ import {
   View,
   Text,
   StyleSheet,
-  SafeAreaView,
-  TextInput,
-  Platform,
-  StatusBar,
   ScrollView,
   Image,
   Dimensions,
@@ -20,30 +16,32 @@ const { height, width } = Dimensions.get("window");
 
 const Explore = () => {
   return (
-    <View style={{ flex: 1 }}>
-      <ImageSwiper />
-      <View>
+    <ScrollView>
+      <View style={{ width: "100%" }}>
+        <ImageSwiper />
+
         <ScrollView scrollEventThrottle={19}>
-          <View style={{ backgroundColor: "white", paddingTop: 20 }}>
+          <View>
             <Text
               style={{
                 fontSize: 24,
                 fontWeight: "700",
                 paddingHorizontal: 20,
+                marginTop: 30,
               }}
             >
               Avoid Getting infected
             </Text>
 
-            <View style={{ height: 130, marginTop: 20 }}>
+            <View style={{ height: 130, marginTop: 10 }}>
               <ScrollView
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
               >
-                <Category name="Home" />
-                <Category name="Experiences" />
-                <Category name="Resturant" />
-                <Category name="Resturant" />
+                <Category name="Keep Clean" />
+                <Category name="Socail Distance" />
+                <Category name="Stay Home" />
+                <Category name="Eat Healthy" />
               </ScrollView>
             </View>
             <View style={{ marginTop: 40, paddingHorizontal: 20 }}>
@@ -51,8 +49,15 @@ const Explore = () => {
               <Text style={{ fontWeight: "100", marginTop: 10 }}>
                 Stay Safe For Any Urgent Cases Hit our panic Button
               </Text>
-              <View style={{ width: width - 40, height: 200, marginTop: 20 }}>
+              <View
+                style={{
+                  width: width - 40,
+                  height: 250,
+                  marginTop: 20,
+                }}
+              >
                 <Image
+                  source={require("../assets/banner5.jpg")}
                   style={{
                     flex: 1,
                     height: null,
@@ -64,11 +69,18 @@ const Explore = () => {
                   }}
                 />
               </View>
+              <View
+                style={{
+                  width: width - 40,
+                  height: 55,
+                  marginTop: 20,
+                }}
+              ></View>
             </View>
           </View>
         </ScrollView>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 export default Explore;

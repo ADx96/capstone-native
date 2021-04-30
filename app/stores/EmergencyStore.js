@@ -22,7 +22,7 @@ class EmergencyStore {
       const res = await instance.post("/emergency", newEmergency);
       runInAction(() => this.emergencies.push(res.data));
     } catch (error) {
-      console.log("log1 -> createHotel -> error", error);
+      console.log("log1 -> createEmergency -> error", error);
     }
   };
 
