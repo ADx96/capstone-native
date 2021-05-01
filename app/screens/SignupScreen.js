@@ -44,6 +44,11 @@ const Signup = () => {
     })();
   }, []);
   const pickImage = async () => {
+    // await ImagePicker.launchCameraAsync({
+    //   mediaTypes: ImagePicker.MediaTypeOptions.Videos,
+    //   allowsEditing: true,
+    //   quality: 1,
+    // });
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,

@@ -1,6 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import React, { Profiler } from "react";
-import { StyleSheet } from "react-native";
+
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
@@ -24,16 +23,57 @@ import * as eva from "@eva-design/eva";
 import { EvaIconsPack } from "@ui-kitten/eva-icons";
 import Profile from "./app/screens/Profile";
 
+import React, { useCallback, useEffect, useState, Profiler } from "react";
+import { StyleSheet, Text, View, ImageBackground } from "react-native";
+
 const App = () => {
   const Stack = createStackNavigator();
   const Drawer = createDrawerNavigator();
+
+  const [appIsReady, setAppIsReady] = useState(false);
+
+  const SplashPage = ({ navigation }) => {
+    useEffect(() => {
+      setTimeout(() => {
+        navigation.navigate("Welcome");
+      }, 6000);
+    }, []);
+    return (
+      <ImageBackground
+        style={styles.bgImage}
+        source={require("./app/assets/SPLASH.gif")}
+        onLayout={onLayoutRootView}
+      />
+    );
+  };
+
+  const onLayoutRootView = useCallback(async () => {
+    if (appIsReady) {
+      // This tells the splash screen to hide immediately! If we call this after
+      // `setAppIsReady`, then we may see a blank screen while the app is
+      // loading its initial state and rendering its first pixels. So instead,
+      // we hide the splash screen once we know the root view has already
+      // performed layout.
+      //await SplashScreen.hideAsync();
+    }
+  }, [appIsReady]);
+
+  if (!appIsReady) {
+  }
+
   return (
     <NavigationContainer style={styles.container}>
       <IconRegistry icons={EvaIconsPack} />
       <ApplicationProvider {...eva} theme={eva.light}>
         <StatusBar />
+
         {authStore.isLoading === true || !authStore.user ? (
-          <Stack.Navigator initialRouteName="Welcome">
+          <Stack.Navigator initialRouteName="Splash">
+            <Stack.Screen
+              name="Splash"
+              component={SplashPage}
+              options={{ headerShown: false }}
+            />
             <Stack.Screen
               name="Welcome"
               component={WelcomeScreen}
@@ -83,5 +123,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+  },
+  bgImage: {
+    flex: 1,
   },
 });

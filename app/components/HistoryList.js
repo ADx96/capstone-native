@@ -2,7 +2,7 @@ import { observer } from "mobx-react";
 import { Spinner, View, Text } from "native-base";
 
 import React from "react";
-import { ScrollView, StyleSheet } from "react-native";
+import { ScrollView, StyleSheet, ImageBackground } from "react-native";
 import authStore from "../stores/authStore";
 import emergencyStore from "../stores/EmergencyStore";
 import HistoryItem from "./HistoryItem";
@@ -19,10 +19,15 @@ const HistoryList = () => {
     ));
 
   return (
-    <ScrollView>
-      <Text style={styles.Text}>Your Panic Requests History</Text>
-      {historyList}
-    </ScrollView>
+    <ImageBackground
+      style={styles.bgImage}
+      source={require("../assets/test1.jpg")}
+    >
+      <ScrollView>
+        <Text style={styles.Text}>Your Panic Requests History</Text>
+        {historyList}
+      </ScrollView>
+    </ImageBackground>
   );
 };
 
@@ -31,9 +36,12 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginLeft: 56,
 
-    marginTop: 50,
+    marginTop: 120,
     fontSize: 23,
     color: "white",
+  },
+  bgImage: {
+    flex: 1,
   },
 });
 export default observer(HistoryList);

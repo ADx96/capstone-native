@@ -19,7 +19,7 @@ const HistoryStackScreen = ({ navigation }) => {
               size={29}
               onPress={() => navigation.openDrawer()}
               color="white"
-              backgroundColor="black"
+              backgroundColor="transparent"
             />
           ),
           headerShown: true,

@@ -9,7 +9,7 @@ import { Spinner } from "native-base";
 import Icon from "react-native-vector-icons/FontAwesome5";
 
 import { appendApi } from "../stores/instance";
-import { color } from "react-native-reanimated";
+
 import Animated from "react-native-reanimated";
 
 const DrawerContent = ({ progress, navigation }) => {

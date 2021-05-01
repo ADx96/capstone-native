@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Text,
   StyleSheet,
@@ -6,6 +6,7 @@ import {
   ImageBackground,
   Image,
   TouchableOpacity,
+  ToastAndroid,
 } from "react-native";
 import { observer } from "mobx-react";
 import { Card, Title, Button } from "react-native-paper";
@@ -16,10 +17,24 @@ import alert from "../assets/alert.png";
 import { Spinner } from "@ui-kitten/components";
 import Icon from "react-native-vector-icons//FontAwesome5";
 import emergencyStore from "../stores/EmergencyStore";
+import { useNavigation } from "@react-navigation/native";
+import * as ImagePicker from "expo-image-picker";
 
+const showToastWithGravityAndOffset = () => {
+  ToastAndroid.showWithGravityAndOffset(
+    "A wild toast appeared!",
+    ToastAndroid.LONG,
+    ToastAndroid.TOP,
+    25,
+    50
+  );
+};
 const PanikRequest = ({ route }) => {
+  const [media, Setmedia] = useState(null);
   const { type } = route.params;
+  const navigation = useNavigation();
   if (!locationStore.location) return <Spinner />;
+
   console.log(locationStore.location);
 
   const handleSubmit = async () => {
@@ -31,6 +46,38 @@ const PanikRequest = ({ route }) => {
     };
     await emergencyStore.createEmergency(Emergency);
     console.log("efe", Emergency);
+    navigation.navigate("History");
+    showToastWithGravityAndOffset();
+  };
+
+  useEffect(() => {
+    (async () => {
+      if (Platform.OS !== "web") {
+        const {
+          status,
+        } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+        if (status !== "granted") {
+          alert("Sorry, we need camera roll permissions to make this work!");
+        }
+      }
+    })();
+  }, []);
+  const pickMedia = async () => {
+    await ImagePicker.launchCameraAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Videos,
+      allowsEditing: true,
+      quality: 1,
+    });
+
+    console.log(result);
+
+    if (!result.cancelled) {
+      // Infer the type of the image
+      let match = /\.(\w+)$/.exec(filename);
+      let type = match ? `image/${match[1]}` : `image`;
+
+      setUser({ ...user, image: { uri: localUri, name: filename, type } });
+    }
   };
   return (
     <ImageBackground
@@ -40,7 +87,7 @@ const PanikRequest = ({ route }) => {
       <View style={{ flex: 1 }}>
         <View
           style={{
-            marginTop: 30,
+            marginTop: 10,
             justifyContent: "center",
             alignItems: "center",
           }}
@@ -66,6 +113,11 @@ const PanikRequest = ({ route }) => {
           </MapView>
         </View>
         <View style={{ marginTop: 15, marginLeft: 85 }}>
+          <TouchableOpacity onPress={() => pickMedia()}>
+            <Icon size={25} name="file-video" />
+          </TouchableOpacity>
+          <Text>Choose Image/Video</Text>
+
           <Card style={styles.Card}>
             <Text style={styles.Text}>
               <Icon size={25} name="user-injured" />
@@ -138,6 +190,7 @@ const styles = StyleSheet.create({
   },
   container: {
     paddingTop: 25,
+    flex: 1,
   },
   tinyLogo2: {
     width: 70,

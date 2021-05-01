@@ -5,7 +5,7 @@ import HistoryList from "../components/HistoryList";
 
 export default function History() {
   return (
-    <View style={{ flex: 1, marginTop: 50 }}>
+    <View style={{ flex: 1 }}>
       <HistoryList />
     </View>
   );

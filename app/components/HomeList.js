@@ -1,4 +1,4 @@
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, ImageBackground } from "react-native";
 
 import * as React from "react";
 
@@ -17,10 +17,15 @@ function HomeList({ navigation }) {
   ));
 
   return (
-    <View>
-      <Title style={styles.Title}>Whats Your Emergency?</Title>
-      {homeList}
-    </View>
+    <ImageBackground
+      style={styles.bgImage}
+      source={require("../assets/test1.jpg")}
+    >
+      <View>
+        <Title style={styles.Title}>Whats Your Emergency?</Title>
+        {homeList}
+      </View>
+    </ImageBackground>
   );
 }
 
@@ -32,5 +37,9 @@ const styles = StyleSheet.create({
     marginTop: 100,
     fontSize: 20,
     fontWeight: "bold",
+    color: "white",
+  },
+  bgImage: {
+    flex: 1,
   },
 });

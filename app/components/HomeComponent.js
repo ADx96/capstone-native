@@ -59,9 +59,10 @@ const styles = StyleSheet.create({
     elevation: 14,
   },
   coverImage: {
-    width: 320,
+    width: 330,
     marginTop: -82,
-    height: 87,
+    marginLeft: -4,
+    height: 88,
     borderBottomRightRadius: 15,
     borderBottomLeftRadius: 15,
     borderTopRightRadius: 15,

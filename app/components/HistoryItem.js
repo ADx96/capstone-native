@@ -30,9 +30,7 @@ const HistoryItem = ({ emergency }) => {
           <View style={styles.container}>
             <Image
               style={styles.tinyLogo}
-              source={{
-                uri: "https://reactnative.dev/img/tiny_logo.png",
-              }}
+              source={require("../assets/history1.png")}
             />
           </View>
           <Text style={styles.baseText}>Status:{emergency.status}</Text>
