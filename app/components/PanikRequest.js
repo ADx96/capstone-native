@@ -22,7 +22,7 @@ import * as ImagePicker from "expo-image-picker";
 
 const showToastWithGravityAndOffset = () => {
   ToastAndroid.showWithGravityAndOffset(
-    "A wild toast appeared!",
+    "Request submitted!",
     ToastAndroid.LONG,
     ToastAndroid.TOP,
     25,
@@ -35,7 +35,7 @@ const PanikRequest = ({ route }) => {
   if (!locationStore.location) return <Spinner />;
 
   useEffect(() => {
-    (async () => {
+    async () => {
       if (Platform.OS !== "web") {
         const {
           status,
@@ -44,7 +44,7 @@ const PanikRequest = ({ route }) => {
           alert("Sorry, we need camera roll permissions to make this work!");
         }
       }
-    })();
+    };
   }, []);
 
   const pickMedia = async () => {
@@ -62,10 +62,9 @@ const PanikRequest = ({ route }) => {
       type: type.type,
       lat: locationStore.location.lat,
       lng: locationStore.location.lng,
-      location: `${locationStore.location}`,
+      location: locationStore.adress[0].city,
     };
     await emergencyStore.createEmergency(Emergency);
-    console.log("efe", Emergency);
     navigation.navigate("History");
     showToastWithGravityAndOffset();
   };
@@ -169,7 +168,7 @@ const PanikRequest = ({ route }) => {
               elevation: 17,
             }}
           >
-            <Image style={styles.tinyLogo2} source={alert}></Image>
+            <Image style={styles.tinyLogo2} source={alert} />
           </View>
         </TouchableOpacity>
       </View>
