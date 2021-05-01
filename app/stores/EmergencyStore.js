@@ -7,6 +7,7 @@ class EmergencyStore {
 
   fetchEmergency = async () => {
     try {
+      this.loading = true;
       const response = await instance.get("/emergency");
 
       runInAction(() => {
@@ -21,7 +22,8 @@ class EmergencyStore {
   createEmergency = async (newEmergency) => {
     try {
       const res = await instance.post("/emergency", newEmergency);
-      runInAction(() => this.emergencies.push(res.data));
+      // runInAction(() => this.emergencies.push(res.data));
+      this.fetchEmergency();
     } catch (error) {
       console.log("log1 -> createEmergency -> error", error);
     }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import {
   Text,
   StyleSheet,
@@ -34,8 +34,6 @@ const PanikRequest = ({ route }) => {
   const navigation = useNavigation();
   if (!locationStore.location) return <Spinner />;
 
-  console.log(locationStore.location);
-
   useEffect(() => {
     (async () => {
       if (Platform.OS !== "web") {
@@ -64,7 +62,7 @@ const PanikRequest = ({ route }) => {
       type: type.type,
       lat: locationStore.location.lat,
       lng: locationStore.location.lng,
-      location: locationStore.location,
+      location: `${locationStore.location}`,
     };
     await emergencyStore.createEmergency(Emergency);
     console.log("efe", Emergency);

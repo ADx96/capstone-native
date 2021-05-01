@@ -34,7 +34,7 @@ const HistoryItem = ({ emergency }) => {
             />
           </View>
           <Text style={styles.baseText}>Status:{emergency.status}</Text>
-          <Text style={styles.baseText2}>AMBULANCE{emergency.Types.type}</Text>
+          <Text style={styles.baseText2}>{emergency.Types.type}</Text>
           <Text style={styles.baseText3}>
             Date and time:{"\n"}
             {emergency.createdAt}

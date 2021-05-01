@@ -9,7 +9,6 @@ import HistoryItem from "./HistoryItem";
 
 const HistoryList = () => {
   if (emergencyStore.loading) return <Spinner />;
-
   const historyList = emergencyStore.emergencies
     .filter((emergency) => {
       return emergency.Requester.id === authStore.user.id;

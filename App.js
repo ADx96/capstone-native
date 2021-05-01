@@ -9,7 +9,7 @@ import Signup from "./app/screens/SignupScreen";
 import AccedentsDetails from "./app/components/AccedentsTipsDetails";
 
 import PanikRequest from "./app/components/PanikRequest";
-import EmergencyTipsDetails from "./app/components/EmergencyTipsDetails";
+import EmergencyTipsDetails from "./app/components/EmergencytipsDetails";
 import DrawerContent from "./app/components/DrawerContent";
 
 //Auth
