@@ -34,18 +34,19 @@ const AccedentsTipsItem = ({ tip2 }) => {
 const styles = StyleSheet.create({
   container: {
     marginLeft: 30,
-    marginTop: 50,
+    marginTop: 45,
     display: "flex",
   },
   tinyLogo: {
-    width: 70,
-    height: 70,
+    width: 90,
+    height: 90,
     marginRight: "50%",
+    borderRadius: 15,
   },
 
   baseText: {
     fontWeight: "bold",
-    marginLeft: "25%",
+    marginLeft: "30%",
     paddingTop: 10,
     position: "absolute",
   },

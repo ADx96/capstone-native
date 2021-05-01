@@ -12,8 +12,9 @@ class AuthStore {
 
   storageData = async (token) => {
     try {
-      const jsonValue = decode(token);
       await AsyncStorage.setItem("myToken", token);
+      const jsonValue = decode(token);
+      instance.defaults.headers.common.Authorization = `Bearer ${token}`;
       runInAction(() => {
         this.user = jsonValue;
         this.isLoading = false;

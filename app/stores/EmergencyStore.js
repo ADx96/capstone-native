@@ -8,6 +8,7 @@ class EmergencyStore {
   fetchEmergency = async () => {
     try {
       const response = await instance.get("/emergency");
+
       runInAction(() => {
         this.emergencies = response.data;
         this.loading = false;

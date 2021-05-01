@@ -1,12 +1,23 @@
 import { Button } from "native-base";
-import React, { useState } from "react";
-import { StyleSheet, ImageBackground, Image, Text, View } from "react-native";
+import React, { useState, useEffect } from "react";
+import {
+  StyleSheet,
+  ImageBackground,
+  Image,
+  Text,
+  View,
+  Platform,
+} from "react-native";
 import authStore from "../stores/authStore";
 import { Avatar, Card, TextInput } from "react-native-paper";
+import * as ImagePicker from "expo-image-picker";
+
 import { observer } from "mobx-react";
 import Icon from "react-native-vector-icons/FontAwesome5";
 
 const Signup = () => {
+  const [image, setImage] = useState(null);
+
   const [user, setUser] = useState({
     firstName: "",
     lastName: "",
@@ -14,16 +25,68 @@ const Signup = () => {
     civilId: "",
     username: "",
     password: "",
+    image: "",
   });
   const handleSubmit = async (event) => {
     event.preventDefault();
     await authStore.signUp(user);
   };
+  useEffect(() => {
+    (async () => {
+      if (Platform.OS !== "web") {
+        const {
+          status,
+        } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+        if (status !== "granted") {
+          alert("Sorry, we need camera roll permissions to make this work!");
+        }
+      }
+    })();
+  }, []);
+  const pickImage = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
 
+    console.log(result);
+
+    if (!result.cancelled) {
+      setImage(result.uri);
+      let localUri = result.uri;
+      let filename = localUri.split("/").pop();
+
+      // Infer the type of the image
+      let match = /\.(\w+)$/.exec(filename);
+      let type = match ? `image/${match[1]}` : `image`;
+
+      setUser({ ...user, image: { uri: localUri, name: filename, type } });
+    }
+  };
   return (
     <ImageBackground style={styles.bgImage} source={require("../assets/c.gif")}>
       <View style={{ flex: 1, width: "100%", marginTop: "20%" }}>
-        <Avatar.Image style={{ marginLeft: "35%" }} size={100} />
+        <Avatar.Image
+          source={{ uri: image }}
+          style={{
+            marginLeft: "35%",
+          }}
+          size={100}
+        />
+        <Icon
+          name="cloud-upload-alt"
+          style={{
+            fontSize: 22,
+            width: 30,
+            color: "white",
+            marginLeft: 210,
+            marginTop: 75,
+            position: "absolute",
+          }}
+          onPress={pickImage}
+        />
         <Card style={styles.card}>
           <TextInput
             style={styles.input}

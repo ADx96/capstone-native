@@ -2,16 +2,31 @@ import React from "react";
 import { Text, Image, StyleSheet, View, ImageBackground } from "react-native";
 import { observer } from "mobx-react";
 import { Card } from "react-native-paper";
+import { SocialIcon } from "react-native-elements";
+import { useNavigation } from "@react-navigation/native";
+import Icon from "react-native-vector-icons/FontAwesome5";
 
 const EmergencyTipsDetails = ({ route }) => {
   const { tip1 } = route.params;
-
+  const navigation = useNavigation();
   return (
     <View style={{ flex: 1 }}>
       <ImageBackground
         style={{ width: "100%", flex: 1 }}
         source={{ uri: tip1.image }}
       >
+        <Icon
+          name="arrow-circle-left"
+          style={{
+            fontSize: 32,
+            width: 40,
+            color: "white",
+            marginLeft: 28,
+            marginTop: 55,
+            position: "absolute",
+          }}
+          onPress={() => navigation.goBack()}
+        />
         <Card
           style={{
             width: 410,
@@ -39,6 +54,13 @@ const EmergencyTipsDetails = ({ route }) => {
             <View style={styles.container}></View>
             <Text style={styles.baseText}>{tip1.name}</Text>
             <Text style={styles.baseText2}>{tip1.Details}</Text>
+            <View style={{ position: "absolute", marginTop: 110 }}>
+              <SocialIcon type="twitter" />
+
+              <SocialIcon raised={false} type="instagram" />
+
+              <SocialIcon light type="facebook" />
+            </View>
           </Card.Content>
         </Card>
       </ImageBackground>

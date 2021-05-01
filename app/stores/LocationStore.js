@@ -1,6 +1,5 @@
-import { makeAutoObservable } from "mobx";
-
 import * as Location from "expo-location";
+import { runInAction, makeAutoObservable } from "mobx";
 
 class LocationStore {
   location = null;
@@ -20,10 +19,12 @@ class LocationStore {
       { accuracy: Location.Accuracy.High },
       (loc) => {
         if (loc) {
-          this.location = {
-            lat: +loc.coords.latitude,
-            lng: +loc.coords.longitude,
-          };
+          runInAction(() => {
+            this.location = {
+              lat: +loc.coords.latitude,
+              lng: +loc.coords.longitude,
+            };
+          });
         }
       }
     );

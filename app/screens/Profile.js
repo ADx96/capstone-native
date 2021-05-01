@@ -8,6 +8,10 @@ import { appendApi } from "../stores/instance";
 const Profile = () => {
   return (
     <View style={{ marginTop: 100, marginLeft: 40 }}>
+      <Image
+        style={styles.tinyLogo}
+        source={{ uri: appendApi(authStore.user.image) }}
+      />
       <Card
         style={{
           width: 320,
@@ -28,14 +32,11 @@ const Profile = () => {
         }}
       >
         <Card.Content>
-          <View style={styles.container}>
-            <Image
-              style={styles.tinyLogo}
-              source={{
-                uri: appendApi(authStore.Image),
-              }}
-            />
-          </View>
+          <Image
+            style={styles.tinyLogo}
+            source={{ uri: appendApi(authStore.user.image) }}
+          />
+          <View style={styles.container}></View>
           <Text style={styles.baseText}>{authStore.FirstName}</Text>
           <Text style={styles.baseText2}>{authStore.LastName}</Text>
 
@@ -52,8 +53,9 @@ const styles = StyleSheet.create({
     paddingTop: 25,
   },
   tinyLogo: {
-    width: 70,
-    height: 70,
+    width: 135,
+    height: 150,
+    borderRadius: 15,
   },
   baseText: {
     fontWeight: "bold",

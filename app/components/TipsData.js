@@ -72,9 +72,10 @@ export const tips2 = [
 
     name: "Keep at least one hand on the steering wheel",
 
-    Details: 10,
+    Details:
+      "Reduce in-car distractions such as changing radio stations or CDs, cell phones, eating or momentarily taking a hand off the wheel. A gust of wind, pothole or a blown tire could send the vehicle into another lane and cause a serious accident.",
     image:
-      "https://joyfoodsunshine.com/wp-content/uploads/2016/01/best-chocolate-chip-cookies-recipe-ever-no-chilling-1.jpg",
+      "https://images.unsplash.com/photo-1573225943884-0890989f2ad5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=80",
   },
 ];
 
