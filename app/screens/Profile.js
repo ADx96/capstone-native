@@ -9,8 +9,8 @@ const Profile = () => {
   return (
     <View style={{ marginTop: 100, marginLeft: 40 }}>
       <Image
-        style={styles.tinyLogo}
-        source={{ uri: appendApi(authStore.user.image) }}
+        style={styles.tinyLogo1}
+        source={require("../assets/profile1.png")}
       />
       <Card
         style={{
@@ -29,6 +29,7 @@ const Profile = () => {
           shadowRadius: 9.11,
 
           elevation: 14,
+          position: "absolute",
         }}
       >
         <Card.Content>
@@ -53,8 +54,17 @@ const styles = StyleSheet.create({
     paddingTop: 25,
   },
   tinyLogo: {
-    width: 135,
-    height: 150,
+    width: 150,
+    height: 160,
+    borderRadius: 15,
+    marginTop: -20,
+    right: 10,
+  },
+  tinyLogo1: {
+    width: 520,
+    height: 300,
+    marginLeft: -100,
+    marginTop: -100,
     borderRadius: 15,
   },
   baseText: {

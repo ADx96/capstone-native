@@ -30,12 +30,34 @@ const showToastWithGravityAndOffset = () => {
   );
 };
 const PanikRequest = ({ route }) => {
-  const [media, Setmedia] = useState(null);
   const { type } = route.params;
   const navigation = useNavigation();
   if (!locationStore.location) return <Spinner />;
 
   console.log(locationStore.location);
+
+  useEffect(() => {
+    (async () => {
+      if (Platform.OS !== "web") {
+        const {
+          status,
+        } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+        if (status !== "granted") {
+          alert("Sorry, we need camera roll permissions to make this work!");
+        }
+      }
+    })();
+  }, []);
+
+  const pickMedia = async () => {
+    await ImagePicker.launchCameraAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Videos,
+      allowsEditing: true,
+      quality: 1,
+    });
+
+    console.log(result);
+  };
 
   const handleSubmit = async () => {
     const Emergency = {
@@ -50,35 +72,6 @@ const PanikRequest = ({ route }) => {
     showToastWithGravityAndOffset();
   };
 
-  useEffect(() => {
-    (async () => {
-      if (Platform.OS !== "web") {
-        const {
-          status,
-        } = await ImagePicker.requestMediaLibraryPermissionsAsync();
-        if (status !== "granted") {
-          alert("Sorry, we need camera roll permissions to make this work!");
-        }
-      }
-    })();
-  }, []);
-  const pickMedia = async () => {
-    await ImagePicker.launchCameraAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Videos,
-      allowsEditing: true,
-      quality: 1,
-    });
-
-    console.log(result);
-
-    if (!result.cancelled) {
-      // Infer the type of the image
-      let match = /\.(\w+)$/.exec(filename);
-      let type = match ? `image/${match[1]}` : `image`;
-
-      setUser({ ...user, image: { uri: localUri, name: filename, type } });
-    }
-  };
   return (
     <ImageBackground
       style={styles.bgImage}
@@ -114,9 +107,11 @@ const PanikRequest = ({ route }) => {
         </View>
         <View style={{ marginTop: 15, marginLeft: 85 }}>
           <TouchableOpacity onPress={() => pickMedia()}>
-            <Icon size={25} name="file-video" />
+            <Icon color={"white"} size={25} name="file-video" />
           </TouchableOpacity>
-          <Text>Choose Image/Video</Text>
+          <Text style={{ fontSize: 10, color: "white" }}>
+            Choose Image/Video
+          </Text>
 
           <Card style={styles.Card}>
             <Text style={styles.Text}>
@@ -213,7 +208,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 30,
     marginLeft: -20,
-    marginTop: 50,
+    marginTop: 30,
     color: "white",
     paddingTop: 20,
   },
@@ -258,7 +253,7 @@ const styles = StyleSheet.create({
     elevation: 14,
   },
   map: {
-    marginTop: 50,
+    marginTop: 30,
     width: 300,
     height: 200,
   },
